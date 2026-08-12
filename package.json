@@ -1,0 +1,345 @@
+{
+	"name": "brand-themes",
+	"displayName": "Brand Themes",
+	"description": "48 editor themes inspired by top tech companies and AI startups, with optional brand-matched aurora backgrounds.",
+	"version": "1.0.0",
+	"publisher": "brand-themes",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/EthannHongg/brand-themes.git"
+	},
+	"bugs": {
+		"url": "https://github.com/EthannHongg/brand-themes/issues"
+	},
+	"homepage": "https://github.com/EthannHongg/brand-themes#readme",
+	"engines": {
+		"vscode": "^1.80.0"
+	},
+	"categories": [
+		"Themes"
+	],
+	"keywords": [
+		"theme",
+		"color theme",
+		"dark theme",
+		"light theme",
+		"openai",
+		"anthropic",
+		"google",
+		"aurora"
+	],
+	"icon": "media/icon.png",
+	"galleryBanner": {
+		"color": "#0D0D0D",
+		"theme": "dark"
+	},
+	"activationEvents": [
+		"onStartupFinished"
+	],
+	"main": "./src/extension.js",
+	"contributes": {
+		"themes": [
+			{
+				"label": "Google Dark",
+				"uiTheme": "vs-dark",
+				"path": "./themes/google-dark.json"
+			},
+			{
+				"label": "Google Light",
+				"uiTheme": "vs",
+				"path": "./themes/google-light.json"
+			},
+			{
+				"label": "Apple Dark",
+				"uiTheme": "vs-dark",
+				"path": "./themes/apple-dark.json"
+			},
+			{
+				"label": "Apple Light",
+				"uiTheme": "vs",
+				"path": "./themes/apple-light.json"
+			},
+			{
+				"label": "Meta Dark",
+				"uiTheme": "vs-dark",
+				"path": "./themes/meta-dark.json"
+			},
+			{
+				"label": "Meta Light",
+				"uiTheme": "vs",
+				"path": "./themes/meta-light.json"
+			},
+			{
+				"label": "Amazon Dark",
+				"uiTheme": "vs-dark",
+				"path": "./themes/amazon-dark.json"
+			},
+			{
+				"label": "Amazon Light",
+				"uiTheme": "vs",
+				"path": "./themes/amazon-light.json"
+			},
+			{
+				"label": "Netflix Dark",
+				"uiTheme": "vs-dark",
+				"path": "./themes/netflix-dark.json"
+			},
+			{
+				"label": "Netflix Light",
+				"uiTheme": "vs",
+				"path": "./themes/netflix-light.json"
+			},
+			{
+				"label": "Microsoft Dark",
+				"uiTheme": "vs-dark",
+				"path": "./themes/microsoft-dark.json"
+			},
+			{
+				"label": "Microsoft Light",
+				"uiTheme": "vs",
+				"path": "./themes/microsoft-light.json"
+			},
+			{
+				"label": "NVIDIA Dark",
+				"uiTheme": "vs-dark",
+				"path": "./themes/nvidia-dark.json"
+			},
+			{
+				"label": "NVIDIA Light",
+				"uiTheme": "vs",
+				"path": "./themes/nvidia-light.json"
+			},
+			{
+				"label": "Tesla Dark",
+				"uiTheme": "vs-dark",
+				"path": "./themes/tesla-dark.json"
+			},
+			{
+				"label": "Tesla Light",
+				"uiTheme": "vs",
+				"path": "./themes/tesla-light.json"
+			},
+			{
+				"label": "SpaceX Dark",
+				"uiTheme": "vs-dark",
+				"path": "./themes/spacex-dark.json"
+			},
+			{
+				"label": "SpaceX Light",
+				"uiTheme": "vs",
+				"path": "./themes/spacex-light.json"
+			},
+			{
+				"label": "Salesforce Dark",
+				"uiTheme": "vs-dark",
+				"path": "./themes/salesforce-dark.json"
+			},
+			{
+				"label": "Salesforce Light",
+				"uiTheme": "vs",
+				"path": "./themes/salesforce-light.json"
+			},
+			{
+				"label": "Adobe Dark",
+				"uiTheme": "vs-dark",
+				"path": "./themes/adobe-dark.json"
+			},
+			{
+				"label": "Adobe Light",
+				"uiTheme": "vs",
+				"path": "./themes/adobe-light.json"
+			},
+			{
+				"label": "IBM Dark",
+				"uiTheme": "vs-dark",
+				"path": "./themes/ibm-dark.json"
+			},
+			{
+				"label": "IBM Light",
+				"uiTheme": "vs",
+				"path": "./themes/ibm-light.json"
+			},
+			{
+				"label": "OpenAI Dark",
+				"uiTheme": "vs-dark",
+				"path": "./themes/openai-dark.json"
+			},
+			{
+				"label": "OpenAI Light",
+				"uiTheme": "vs",
+				"path": "./themes/openai-light.json"
+			},
+			{
+				"label": "Anthropic Dark",
+				"uiTheme": "vs-dark",
+				"path": "./themes/anthropic-dark.json"
+			},
+			{
+				"label": "Anthropic Light",
+				"uiTheme": "vs",
+				"path": "./themes/anthropic-light.json"
+			},
+			{
+				"label": "Perplexity Dark",
+				"uiTheme": "vs-dark",
+				"path": "./themes/perplexity-dark.json"
+			},
+			{
+				"label": "Perplexity Light",
+				"uiTheme": "vs",
+				"path": "./themes/perplexity-light.json"
+			},
+			{
+				"label": "Cursor Dark",
+				"uiTheme": "vs-dark",
+				"path": "./themes/cursor-dark.json"
+			},
+			{
+				"label": "Cursor Light",
+				"uiTheme": "vs",
+				"path": "./themes/cursor-light.json"
+			},
+			{
+				"label": "Mistral Dark",
+				"uiTheme": "vs-dark",
+				"path": "./themes/mistral-dark.json"
+			},
+			{
+				"label": "Mistral Light",
+				"uiTheme": "vs",
+				"path": "./themes/mistral-light.json"
+			},
+			{
+				"label": "Cohere Dark",
+				"uiTheme": "vs-dark",
+				"path": "./themes/cohere-dark.json"
+			},
+			{
+				"label": "Cohere Light",
+				"uiTheme": "vs",
+				"path": "./themes/cohere-light.json"
+			},
+			{
+				"label": "Stability AI Dark",
+				"uiTheme": "vs-dark",
+				"path": "./themes/stability-dark.json"
+			},
+			{
+				"label": "Stability AI Light",
+				"uiTheme": "vs",
+				"path": "./themes/stability-light.json"
+			},
+			{
+				"label": "Hugging Face Dark",
+				"uiTheme": "vs-dark",
+				"path": "./themes/huggingface-dark.json"
+			},
+			{
+				"label": "Hugging Face Light",
+				"uiTheme": "vs",
+				"path": "./themes/huggingface-light.json"
+			},
+			{
+				"label": "Replicate Dark",
+				"uiTheme": "vs-dark",
+				"path": "./themes/replicate-dark.json"
+			},
+			{
+				"label": "Replicate Light",
+				"uiTheme": "vs",
+				"path": "./themes/replicate-light.json"
+			},
+			{
+				"label": "Vercel Dark",
+				"uiTheme": "vs-dark",
+				"path": "./themes/vercel-dark.json"
+			},
+			{
+				"label": "Vercel Light",
+				"uiTheme": "vs",
+				"path": "./themes/vercel-light.json"
+			},
+			{
+				"label": "Linear Dark",
+				"uiTheme": "vs-dark",
+				"path": "./themes/linear-dark.json"
+			},
+			{
+				"label": "Linear Light",
+				"uiTheme": "vs",
+				"path": "./themes/linear-light.json"
+			},
+			{
+				"label": "Figma Dark",
+				"uiTheme": "vs-dark",
+				"path": "./themes/figma-dark.json"
+			},
+			{
+				"label": "Figma Light",
+				"uiTheme": "vs",
+				"path": "./themes/figma-light.json"
+			}
+		],
+		"commands": [
+			{
+				"command": "brandThemes.pickTheme",
+				"title": "Brand Themes: Pick Theme",
+				"icon": "$(symbol-color)"
+			},
+			{
+				"command": "brandThemes.pickThemeByCategory",
+				"title": "Brand Themes: Pick by Category"
+			},
+			{
+				"command": "brandThemes.toggleAurora",
+				"title": "Brand Themes: Toggle Aurora Background",
+				"icon": "$(sparkle)"
+			},
+			{
+				"command": "brandThemes.enableAurora",
+				"title": "Brand Themes: Enable Aurora Background"
+			},
+			{
+				"command": "brandThemes.disableAurora",
+				"title": "Brand Themes: Disable Aurora Background"
+			}
+		],
+		"menus": {
+			"commandPalette": [
+				{
+					"command": "brandThemes.pickTheme"
+				},
+				{
+					"command": "brandThemes.pickThemeByCategory"
+				},
+				{
+					"command": "brandThemes.toggleAurora"
+				}
+			]
+		},
+		"configuration": {
+			"title": "Brand Themes",
+			"properties": {
+				"brandThemes.aurora.enabled": {
+					"type": "boolean",
+					"default": false,
+					"description": "Enable brand-matched animated aurora background (requires Custom CSS and JS Loader)."
+				},
+				"brandThemes.showStatusBarPicker": {
+					"type": "boolean",
+					"default": true,
+					"description": "Show the theme picker in the status bar."
+				}
+			}
+		}
+	},
+	"scripts": {
+		"generate": "node scripts/generate-themes.mjs && node scripts/generate-aurora.mjs",
+		"package": "vsce package",
+		"publish": "vsce publish"
+	},
+	"devDependencies": {
+		"@vscode/vsce": "^3.2.1"
+	}
+}

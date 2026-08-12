@@ -1,0 +1,222 @@
+{
+  "bigtech": [
+    {
+      "id": "google",
+      "name": "Google",
+      "primary": "#4285F4",
+      "secondary": "#34A853",
+      "accent": "#EA4335",
+      "dark": { "bg": "#202124", "surface": "#292A2D", "editor": "#292A2D", "fg": "#E8EAED" },
+      "light": { "bg": "#FFFFFF", "surface": "#F8F9FA", "editor": "#FFFFFF", "fg": "#202124" }
+    },
+    {
+      "id": "apple",
+      "name": "Apple",
+      "primary": "#0071E3",
+      "secondary": "#86868B",
+      "accent": "#2997FF",
+      "dark": { "bg": "#1D1D1F", "surface": "#2C2C2E", "editor": "#2C2C2E", "fg": "#F5F5F7" },
+      "light": { "bg": "#FBFBFD", "surface": "#F5F5F7", "editor": "#FFFFFF", "fg": "#1D1D1F" }
+    },
+    {
+      "id": "meta",
+      "name": "Meta",
+      "primary": "#0866FF",
+      "secondary": "#A855F7",
+      "accent": "#E4405F",
+      "dark": { "bg": "#18191A", "surface": "#242526", "editor": "#242526", "fg": "#E4E6EB" },
+      "light": { "bg": "#FFFFFF", "surface": "#F0F2F5", "editor": "#FFFFFF", "fg": "#050505" }
+    },
+    {
+      "id": "amazon",
+      "name": "Amazon",
+      "primary": "#FF9900",
+      "secondary": "#146EB4",
+      "accent": "#232F3E",
+      "dark": { "bg": "#131921", "surface": "#1F2936", "editor": "#1F2936", "fg": "#E3E6E6" },
+      "light": { "bg": "#FFFFFF", "surface": "#F3F3F3", "editor": "#FFFFFF", "fg": "#0F1111" }
+    },
+    {
+      "id": "netflix",
+      "name": "Netflix",
+      "primary": "#E50914",
+      "secondary": "#B20710",
+      "accent": "#F5F5F1",
+      "dark": { "bg": "#141414", "surface": "#1F1F1F", "editor": "#1F1F1F", "fg": "#E5E5E5" },
+      "light": { "bg": "#FFFFFF", "surface": "#F5F5F5", "editor": "#FFFFFF", "fg": "#141414" }
+    },
+    {
+      "id": "microsoft",
+      "name": "Microsoft",
+      "primary": "#0078D4",
+      "secondary": "#50E6FF",
+      "accent": "#FFB900",
+      "dark": { "bg": "#1E1E1E", "surface": "#252526", "editor": "#1E1E1E", "fg": "#CCCCCC" },
+      "light": { "bg": "#FFFFFF", "surface": "#F3F3F3", "editor": "#FFFFFF", "fg": "#1E1E1E" }
+    },
+    {
+      "id": "nvidia",
+      "name": "NVIDIA",
+      "primary": "#76B900",
+      "secondary": "#000000",
+      "accent": "#7AC043",
+      "dark": { "bg": "#1A1A1A", "surface": "#222222", "editor": "#222222", "fg": "#E8E8E8" },
+      "light": { "bg": "#FFFFFF", "surface": "#F5F5F5", "editor": "#FFFFFF", "fg": "#1A1A1A" }
+    },
+    {
+      "id": "tesla",
+      "name": "Tesla",
+      "primary": "#E82127",
+      "secondary": "#171717",
+      "accent": "#CC0000",
+      "dark": { "bg": "#171717", "surface": "#222222", "editor": "#222222", "fg": "#E8E8E8" },
+      "light": { "bg": "#F5F5F5", "surface": "#EBEBEB", "editor": "#FFFFFF", "fg": "#171717" }
+    },
+    {
+      "id": "spacex",
+      "name": "SpaceX",
+      "primary": "#FFFFFF",
+      "secondary": "#005288",
+      "accent": "#A7A9AC",
+      "dark": { "bg": "#000000", "surface": "#0A0A0A", "editor": "#0D0D0D", "fg": "#F0F0F0" },
+      "light": { "bg": "#FFFFFF", "surface": "#F4F4F4", "editor": "#FFFFFF", "fg": "#000000" }
+    },
+    {
+      "id": "salesforce",
+      "name": "Salesforce",
+      "primary": "#00A1E0",
+      "secondary": "#032D60",
+      "accent": "#1B96FF",
+      "dark": { "bg": "#16325C", "surface": "#1B2F4B", "editor": "#1B2F4B", "fg": "#E8F4FD" },
+      "light": { "bg": "#F4F6F9", "surface": "#EEF1F6", "editor": "#FFFFFF", "fg": "#032D60" }
+    },
+    {
+      "id": "adobe",
+      "name": "Adobe",
+      "primary": "#FF0000",
+      "secondary": "#EB1000",
+      "accent": "#323232",
+      "dark": { "bg": "#2C2C2C", "surface": "#323232", "editor": "#323232", "fg": "#F5F5F5" },
+      "light": { "bg": "#FAFAFA", "surface": "#F0F0F0", "editor": "#FFFFFF", "fg": "#2C2C2C" }
+    },
+    {
+      "id": "ibm",
+      "name": "IBM",
+      "primary": "#0F62FE",
+      "secondary": "#4589FF",
+      "accent": "#78A9FF",
+      "dark": { "bg": "#161616", "surface": "#262626", "editor": "#262626", "fg": "#F4F4F4" },
+      "light": { "bg": "#F4F4F4", "surface": "#E8E8E8", "editor": "#FFFFFF", "fg": "#161616" }
+    }
+  ],
+  "startups": [
+    {
+      "id": "openai",
+      "name": "OpenAI",
+      "primary": "#10A37F",
+      "secondary": "#1A7F64",
+      "accent": "#3B82F6",
+      "dark": { "bg": "#0D0D0D", "surface": "#171717", "editor": "#212121", "fg": "#ECECEC" },
+      "light": { "bg": "#F7F7F7", "surface": "#EFEFEF", "editor": "#FFFFFF", "fg": "#0D0D0D" }
+    },
+    {
+      "id": "anthropic",
+      "name": "Anthropic",
+      "primary": "#D97757",
+      "secondary": "#E8927A",
+      "accent": "#7BA3C9",
+      "dark": { "bg": "#141210", "surface": "#1C1A17", "editor": "#262422", "fg": "#E8E4DF" },
+      "light": { "bg": "#F5F2EC", "surface": "#EDE9E2", "editor": "#FAF8F5", "fg": "#1A1816" }
+    },
+    {
+      "id": "perplexity",
+      "name": "Perplexity",
+      "primary": "#20B8CD",
+      "secondary": "#1A9AAA",
+      "accent": "#6EE7F0",
+      "dark": { "bg": "#1A1A2E", "surface": "#22223A", "editor": "#252540", "fg": "#E8E8F0" },
+      "light": { "bg": "#FAFAFA", "surface": "#F0F4F8", "editor": "#FFFFFF", "fg": "#1A1A2E" }
+    },
+    {
+      "id": "cursor",
+      "name": "Cursor",
+      "primary": "#00D8FF",
+      "secondary": "#7C3AED",
+      "accent": "#A78BFA",
+      "dark": { "bg": "#0A0A0A", "surface": "#141414", "editor": "#1A1A1A", "fg": "#E8E8E8" },
+      "light": { "bg": "#F7F7F7", "surface": "#EFEFEF", "editor": "#FFFFFF", "fg": "#0A0A0A" }
+    },
+    {
+      "id": "mistral",
+      "name": "Mistral",
+      "primary": "#FF7000",
+      "secondary": "#FF9A3C",
+      "accent": "#FFD699",
+      "dark": { "bg": "#1B1B1B", "surface": "#252525", "editor": "#2A2A2A", "fg": "#F0F0F0" },
+      "light": { "bg": "#FAFAFA", "surface": "#F0F0F0", "editor": "#FFFFFF", "fg": "#1B1B1B" }
+    },
+    {
+      "id": "cohere",
+      "name": "Cohere",
+      "primary": "#39594D",
+      "secondary": "#4A7A68",
+      "accent": "#7CB89A",
+      "dark": { "bg": "#1A1F1E", "surface": "#232928", "editor": "#2A312F", "fg": "#E8EDE9" },
+      "light": { "bg": "#F8F9F8", "surface": "#EEF1EF", "editor": "#FFFFFF", "fg": "#1A1F1E" }
+    },
+    {
+      "id": "stability",
+      "name": "Stability AI",
+      "primary": "#A855F7",
+      "secondary": "#7C3AED",
+      "accent": "#C084FC",
+      "dark": { "bg": "#0F0F14", "surface": "#18181F", "editor": "#1C1C24", "fg": "#E8E8F0" },
+      "light": { "bg": "#FAFAFA", "surface": "#F3F0F8", "editor": "#FFFFFF", "fg": "#0F0F14" }
+    },
+    {
+      "id": "huggingface",
+      "name": "Hugging Face",
+      "primary": "#FFD21E",
+      "secondary": "#FF9D00",
+      "accent": "#3B82F6",
+      "dark": { "bg": "#1B1B1F", "surface": "#252529", "editor": "#2A2A30", "fg": "#F0F0F5" },
+      "light": { "bg": "#FAFAFA", "surface": "#FFF8E7", "editor": "#FFFFFF", "fg": "#1B1B1F" }
+    },
+    {
+      "id": "replicate",
+      "name": "Replicate",
+      "primary": "#000000",
+      "secondary": "#6366F1",
+      "accent": "#818CF8",
+      "dark": { "bg": "#0A0A0A", "surface": "#141414", "editor": "#1A1A1A", "fg": "#F0F0F0" },
+      "light": { "bg": "#FFFFFF", "surface": "#F5F5F5", "editor": "#FFFFFF", "fg": "#0A0A0A" }
+    },
+    {
+      "id": "vercel",
+      "name": "Vercel",
+      "primary": "#000000",
+      "secondary": "#0070F3",
+      "accent": "#7928CA",
+      "dark": { "bg": "#000000", "surface": "#111111", "editor": "#0A0A0A", "fg": "#EDEDED" },
+      "light": { "bg": "#FFFFFF", "surface": "#FAFAFA", "editor": "#FFFFFF", "fg": "#000000" }
+    },
+    {
+      "id": "linear",
+      "name": "Linear",
+      "primary": "#5E6AD2",
+      "secondary": "#8B8FFF",
+      "accent": "#B4B8FF",
+      "dark": { "bg": "#121214", "surface": "#1A1A1F", "editor": "#1E1E24", "fg": "#EEEEF0" },
+      "light": { "bg": "#FBFBFB", "surface": "#F4F4F5", "editor": "#FFFFFF", "fg": "#121214" }
+    },
+    {
+      "id": "figma",
+      "name": "Figma",
+      "primary": "#A259FF",
+      "secondary": "#0ACF83",
+      "accent": "#FF7262",
+      "dark": { "bg": "#1E1E1E", "surface": "#2C2C2C", "editor": "#2C2C2C", "fg": "#F0F0F0" },
+      "light": { "bg": "#FFFFFF", "surface": "#F5F5F5", "editor": "#FFFFFF", "fg": "#1E1E1E" }
+    }
+  ]
+}

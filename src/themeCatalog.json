@@ -1,0 +1,434 @@
+[
+  {
+    "id": "google",
+    "name": "Google",
+    "mode": "dark",
+    "label": "Google Dark",
+    "filename": "google-dark.json",
+    "category": "bigtech",
+    "primary": "#4285F4"
+  },
+  {
+    "id": "google",
+    "name": "Google",
+    "mode": "light",
+    "label": "Google Light",
+    "filename": "google-light.json",
+    "category": "bigtech",
+    "primary": "#4285F4"
+  },
+  {
+    "id": "apple",
+    "name": "Apple",
+    "mode": "dark",
+    "label": "Apple Dark",
+    "filename": "apple-dark.json",
+    "category": "bigtech",
+    "primary": "#0071E3"
+  },
+  {
+    "id": "apple",
+    "name": "Apple",
+    "mode": "light",
+    "label": "Apple Light",
+    "filename": "apple-light.json",
+    "category": "bigtech",
+    "primary": "#0071E3"
+  },
+  {
+    "id": "meta",
+    "name": "Meta",
+    "mode": "dark",
+    "label": "Meta Dark",
+    "filename": "meta-dark.json",
+    "category": "bigtech",
+    "primary": "#0866FF"
+  },
+  {
+    "id": "meta",
+    "name": "Meta",
+    "mode": "light",
+    "label": "Meta Light",
+    "filename": "meta-light.json",
+    "category": "bigtech",
+    "primary": "#0866FF"
+  },
+  {
+    "id": "amazon",
+    "name": "Amazon",
+    "mode": "dark",
+    "label": "Amazon Dark",
+    "filename": "amazon-dark.json",
+    "category": "bigtech",
+    "primary": "#FF9900"
+  },
+  {
+    "id": "amazon",
+    "name": "Amazon",
+    "mode": "light",
+    "label": "Amazon Light",
+    "filename": "amazon-light.json",
+    "category": "bigtech",
+    "primary": "#FF9900"
+  },
+  {
+    "id": "netflix",
+    "name": "Netflix",
+    "mode": "dark",
+    "label": "Netflix Dark",
+    "filename": "netflix-dark.json",
+    "category": "bigtech",
+    "primary": "#E50914"
+  },
+  {
+    "id": "netflix",
+    "name": "Netflix",
+    "mode": "light",
+    "label": "Netflix Light",
+    "filename": "netflix-light.json",
+    "category": "bigtech",
+    "primary": "#E50914"
+  },
+  {
+    "id": "microsoft",
+    "name": "Microsoft",
+    "mode": "dark",
+    "label": "Microsoft Dark",
+    "filename": "microsoft-dark.json",
+    "category": "bigtech",
+    "primary": "#0078D4"
+  },
+  {
+    "id": "microsoft",
+    "name": "Microsoft",
+    "mode": "light",
+    "label": "Microsoft Light",
+    "filename": "microsoft-light.json",
+    "category": "bigtech",
+    "primary": "#0078D4"
+  },
+  {
+    "id": "nvidia",
+    "name": "NVIDIA",
+    "mode": "dark",
+    "label": "NVIDIA Dark",
+    "filename": "nvidia-dark.json",
+    "category": "bigtech",
+    "primary": "#76B900"
+  },
+  {
+    "id": "nvidia",
+    "name": "NVIDIA",
+    "mode": "light",
+    "label": "NVIDIA Light",
+    "filename": "nvidia-light.json",
+    "category": "bigtech",
+    "primary": "#76B900"
+  },
+  {
+    "id": "tesla",
+    "name": "Tesla",
+    "mode": "dark",
+    "label": "Tesla Dark",
+    "filename": "tesla-dark.json",
+    "category": "bigtech",
+    "primary": "#E82127"
+  },
+  {
+    "id": "tesla",
+    "name": "Tesla",
+    "mode": "light",
+    "label": "Tesla Light",
+    "filename": "tesla-light.json",
+    "category": "bigtech",
+    "primary": "#E82127"
+  },
+  {
+    "id": "spacex",
+    "name": "SpaceX",
+    "mode": "dark",
+    "label": "SpaceX Dark",
+    "filename": "spacex-dark.json",
+    "category": "bigtech",
+    "primary": "#FFFFFF"
+  },
+  {
+    "id": "spacex",
+    "name": "SpaceX",
+    "mode": "light",
+    "label": "SpaceX Light",
+    "filename": "spacex-light.json",
+    "category": "bigtech",
+    "primary": "#FFFFFF"
+  },
+  {
+    "id": "salesforce",
+    "name": "Salesforce",
+    "mode": "dark",
+    "label": "Salesforce Dark",
+    "filename": "salesforce-dark.json",
+    "category": "bigtech",
+    "primary": "#00A1E0"
+  },
+  {
+    "id": "salesforce",
+    "name": "Salesforce",
+    "mode": "light",
+    "label": "Salesforce Light",
+    "filename": "salesforce-light.json",
+    "category": "bigtech",
+    "primary": "#00A1E0"
+  },
+  {
+    "id": "adobe",
+    "name": "Adobe",
+    "mode": "dark",
+    "label": "Adobe Dark",
+    "filename": "adobe-dark.json",
+    "category": "bigtech",
+    "primary": "#FF0000"
+  },
+  {
+    "id": "adobe",
+    "name": "Adobe",
+    "mode": "light",
+    "label": "Adobe Light",
+    "filename": "adobe-light.json",
+    "category": "bigtech",
+    "primary": "#FF0000"
+  },
+  {
+    "id": "ibm",
+    "name": "IBM",
+    "mode": "dark",
+    "label": "IBM Dark",
+    "filename": "ibm-dark.json",
+    "category": "bigtech",
+    "primary": "#0F62FE"
+  },
+  {
+    "id": "ibm",
+    "name": "IBM",
+    "mode": "light",
+    "label": "IBM Light",
+    "filename": "ibm-light.json",
+    "category": "bigtech",
+    "primary": "#0F62FE"
+  },
+  {
+    "id": "openai",
+    "name": "OpenAI",
+    "mode": "dark",
+    "label": "OpenAI Dark",
+    "filename": "openai-dark.json",
+    "category": "startups",
+    "primary": "#10A37F"
+  },
+  {
+    "id": "openai",
+    "name": "OpenAI",
+    "mode": "light",
+    "label": "OpenAI Light",
+    "filename": "openai-light.json",
+    "category": "startups",
+    "primary": "#10A37F"
+  },
+  {
+    "id": "anthropic",
+    "name": "Anthropic",
+    "mode": "dark",
+    "label": "Anthropic Dark",
+    "filename": "anthropic-dark.json",
+    "category": "startups",
+    "primary": "#D97757"
+  },
+  {
+    "id": "anthropic",
+    "name": "Anthropic",
+    "mode": "light",
+    "label": "Anthropic Light",
+    "filename": "anthropic-light.json",
+    "category": "startups",
+    "primary": "#D97757"
+  },
+  {
+    "id": "perplexity",
+    "name": "Perplexity",
+    "mode": "dark",
+    "label": "Perplexity Dark",
+    "filename": "perplexity-dark.json",
+    "category": "startups",
+    "primary": "#20B8CD"
+  },
+  {
+    "id": "perplexity",
+    "name": "Perplexity",
+    "mode": "light",
+    "label": "Perplexity Light",
+    "filename": "perplexity-light.json",
+    "category": "startups",
+    "primary": "#20B8CD"
+  },
+  {
+    "id": "cursor",
+    "name": "Cursor",
+    "mode": "dark",
+    "label": "Cursor Dark",
+    "filename": "cursor-dark.json",
+    "category": "startups",
+    "primary": "#00D8FF"
+  },
+  {
+    "id": "cursor",
+    "name": "Cursor",
+    "mode": "light",
+    "label": "Cursor Light",
+    "filename": "cursor-light.json",
+    "category": "startups",
+    "primary": "#00D8FF"
+  },
+  {
+    "id": "mistral",
+    "name": "Mistral",
+    "mode": "dark",
+    "label": "Mistral Dark",
+    "filename": "mistral-dark.json",
+    "category": "startups",
+    "primary": "#FF7000"
+  },
+  {
+    "id": "mistral",
+    "name": "Mistral",
+    "mode": "light",
+    "label": "Mistral Light",
+    "filename": "mistral-light.json",
+    "category": "startups",
+    "primary": "#FF7000"
+  },
+  {
+    "id": "cohere",
+    "name": "Cohere",
+    "mode": "dark",
+    "label": "Cohere Dark",
+    "filename": "cohere-dark.json",
+    "category": "startups",
+    "primary": "#39594D"
+  },
+  {
+    "id": "cohere",
+    "name": "Cohere",
+    "mode": "light",
+    "label": "Cohere Light",
+    "filename": "cohere-light.json",
+    "category": "startups",
+    "primary": "#39594D"
+  },
+  {
+    "id": "stability",
+    "name": "Stability AI",
+    "mode": "dark",
+    "label": "Stability AI Dark",
+    "filename": "stability-dark.json",
+    "category": "startups",
+    "primary": "#A855F7"
+  },
+  {
+    "id": "stability",
+    "name": "Stability AI",
+    "mode": "light",
+    "label": "Stability AI Light",
+    "filename": "stability-light.json",
+    "category": "startups",
+    "primary": "#A855F7"
+  },
+  {
+    "id": "huggingface",
+    "name": "Hugging Face",
+    "mode": "dark",
+    "label": "Hugging Face Dark",
+    "filename": "huggingface-dark.json",
+    "category": "startups",
+    "primary": "#FFD21E"
+  },
+  {
+    "id": "huggingface",
+    "name": "Hugging Face",
+    "mode": "light",
+    "label": "Hugging Face Light",
+    "filename": "huggingface-light.json",
+    "category": "startups",
+    "primary": "#FFD21E"
+  },
+  {
+    "id": "replicate",
+    "name": "Replicate",
+    "mode": "dark",
+    "label": "Replicate Dark",
+    "filename": "replicate-dark.json",
+    "category": "startups",
+    "primary": "#000000"
+  },
+  {
+    "id": "replicate",
+    "name": "Replicate",
+    "mode": "light",
+    "label": "Replicate Light",
+    "filename": "replicate-light.json",
+    "category": "startups",
+    "primary": "#000000"
+  },
+  {
+    "id": "vercel",
+    "name": "Vercel",
+    "mode": "dark",
+    "label": "Vercel Dark",
+    "filename": "vercel-dark.json",
+    "category": "startups",
+    "primary": "#000000"
+  },
+  {
+    "id": "vercel",
+    "name": "Vercel",
+    "mode": "light",
+    "label": "Vercel Light",
+    "filename": "vercel-light.json",
+    "category": "startups",
+    "primary": "#000000"
+  },
+  {
+    "id": "linear",
+    "name": "Linear",
+    "mode": "dark",
+    "label": "Linear Dark",
+    "filename": "linear-dark.json",
+    "category": "startups",
+    "primary": "#5E6AD2"
+  },
+  {
+    "id": "linear",
+    "name": "Linear",
+    "mode": "light",
+    "label": "Linear Light",
+    "filename": "linear-light.json",
+    "category": "startups",
+    "primary": "#5E6AD2"
+  },
+  {
+    "id": "figma",
+    "name": "Figma",
+    "mode": "dark",
+    "label": "Figma Dark",
+    "filename": "figma-dark.json",
+    "category": "startups",
+    "primary": "#A259FF"
+  },
+  {
+    "id": "figma",
+    "name": "Figma",
+    "mode": "light",
+    "label": "Figma Light",
+    "filename": "figma-light.json",
+    "category": "startups",
+    "primary": "#A259FF"
+  }
+]
