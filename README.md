@@ -16,7 +16,7 @@ Frontier Themes is a collection of **48 color themes** (light + dark) inspired b
 
 Use the **status bar picker** to switch themes quickly, **preview with ↑↓** before applying.
 
-> **Experimental:** Animated aurora backgrounds are disabled by default. See [Experimental features](#experimental-features) below.
+> **Experimental:** Animated aurora backgrounds are disabled by default. See [Aurora backgrounds](#aurora-backgrounds-experimental-off-by-default) below.
 
 > Brand names and colors are inspired by public identities. This project is not affiliated with or endorsed by any company listed.
 
@@ -149,20 +149,35 @@ Command Palette → **Frontier Themes: Aurora Setup Guide** for full details.
 |---------|-------------|
 | `Frontier Themes: Pick Theme` | Open picker with swatches and live preview |
 | `Frontier Themes: Pick by Category` | Big Tech or AI & Startups first |
-| `Frontier Themes: Toggle Aurora Background` | On / off aurora for current theme |
+| `Frontier Themes: Toggle Aurora Background` | On / off aurora (experimental only) |
 | `Frontier Themes: Aurora Setup Guide` | Open helper install instructions |
 
 ## Settings
 
 | Setting | Default | Description |
 |---------|---------|-------------|
-| `frontierThemes.aurora.enabled` | `false` | Aurora on/off |
-| `frontierThemes.showStatusBarPicker` | `true` | Status bar theme + aurora controls |
+| `frontierThemes.experimental.aurora` | `false` | Enable experimental aurora UI (set manually in settings.json) |
+| `frontierThemes.aurora.enabled` | `false` | Aurora on/off (requires experimental flag) |
+| `frontierThemes.showStatusBarPicker` | `true` | Status bar theme picker |
 
-## Development
+## Theme architecture
+
+Themes are generated from modular sources in `scripts/theme/`:
+
+| Module | Purpose |
+|--------|---------|
+| `derive-palette.mjs` | Brand → semantic color roles |
+| `workbench/` | Shell, editor internals, merge conflicts |
+| `tokens/` | Base + Python, JS/TS, Markdown, CSS, HTML |
+| `semantic-colors.mjs` | LSP semantic token map |
+| `extensions/` | GitLens + Jupyter notebook keys |
+| `terminal.mjs` | Curated ANSI palette |
+
+Each generated theme includes **~320 workbench keys**, **~65+ TextMate rules**, and **semantic token colors**.
 
 ```bash
-npm run generate   # themes + aurora scripts from scripts/brands.json
+npm run generate   # regenerate themes/ from scripts/
+npm run dev        # watch brands.json and regenerate on change
 npm run package    # build .vsix
 ```
 

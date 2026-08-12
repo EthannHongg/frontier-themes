@@ -1,0 +1,167 @@
+import { mix, withAlpha } from '../color-utils.mjs';
+
+/** Shell UI: activity bar, sidebar, tabs, panels, status bar, forms. */
+export function getShellColors(p) {
+  const { isDark, fg, bg, surface, editor, border, mutedFg, primary, error, warning, success, info, tabInactive } = p;
+
+  return {
+    focusBorder: withAlpha(primary, 0.4),
+    foreground: fg,
+    descriptionForeground: mutedFg,
+    errorForeground: error,
+    'icon.foreground': p.subtleFg,
+
+    'textLink.foreground': primary,
+    'textLink.activeForeground': mix(primary, fg, 0.3),
+    'textCodeBlock.background': isDark ? bg : mix(surface, '#FFFFFF', 0.6),
+    'textBlockQuote.background': surface,
+    'textBlockQuote.border': primary,
+
+    'button.background': primary,
+    'button.foreground': p.onPrimary,
+    'button.hoverBackground': mix(primary, fg, 0.15),
+    'button.secondaryBackground': isDark ? mix(surface, '#FFFFFF', 0.08) : mix(surface, '#000000', 0.06),
+    'button.secondaryForeground': fg,
+    'button.secondaryHoverBackground': isDark ? mix(surface, '#FFFFFF', 0.12) : mix(surface, '#000000', 0.1),
+
+    'checkbox.background': isDark ? mix(editor, '#FFFFFF', 0.04) : '#FFFFFF',
+    'checkbox.border': border,
+    'checkbox.foreground': primary,
+
+    'dropdown.background': isDark ? mix(editor, '#FFFFFF', 0.04) : '#FFFFFF',
+    'dropdown.border': border,
+    'dropdown.foreground': fg,
+    'dropdown.listBackground': isDark ? surface : '#FFFFFF',
+
+    'input.background': isDark ? bg : '#FFFFFF',
+    'input.border': border,
+    'input.foreground': fg,
+    'input.placeholderForeground': mutedFg,
+    'inputOption.activeBackground': withAlpha(primary, 0.2),
+    'inputOption.activeBorder': primary,
+    'inputOption.activeForeground': fg,
+    'inputValidation.errorBackground': withAlpha(error, 0.15),
+    'inputValidation.errorBorder': error,
+    'inputValidation.infoBackground': withAlpha(primary, 0.12),
+    'inputValidation.infoBorder': primary,
+    'inputValidation.warningBackground': withAlpha(warning, 0.15),
+    'inputValidation.warningBorder': warning,
+
+    'badge.background': primary,
+    'badge.foreground': p.onPrimary,
+    'progressBar.background': primary,
+
+    'list.activeSelectionBackground': withAlpha(primary, isDark ? 0.22 : 0.14),
+    'list.activeSelectionForeground': isDark ? '#FFFFFF' : fg,
+    'list.inactiveSelectionBackground': isDark ? mix(surface, '#FFFFFF', 0.08) : mix(surface, '#000000', 0.04),
+    'list.inactiveSelectionForeground': fg,
+    'list.hoverBackground': isDark ? mix(editor, '#FFFFFF', 0.06) : mix(surface, '#000000', 0.03),
+    'list.focusBackground': withAlpha(primary, 0.14),
+    'list.focusOutline': withAlpha(primary, 0.4),
+    'list.highlightForeground': primary,
+    'list.dropBackground': withAlpha(primary, 0.14),
+    'listFilterWidget.background': isDark ? mix(editor, '#FFFFFF', 0.04) : '#FFFFFF',
+    'listFilterWidget.outline': primary,
+    'listFilterWidget.noMatchesOutline': error,
+
+    'activityBar.background': bg,
+    'activityBar.foreground': fg,
+    'activityBar.inactiveForeground': mutedFg,
+    'activityBar.border': border,
+    'activityBarBadge.background': primary,
+    'activityBarBadge.foreground': p.onPrimary,
+    'activityBar.activeBorder': primary,
+    'activityBarTop.foreground': fg,
+    'activityBarTop.inactiveForeground': mutedFg,
+    'activityBarTop.activeBorder': primary,
+
+    'sideBar.background': surface,
+    'sideBar.foreground': fg,
+    'sideBar.border': border,
+    'sideBarTitle.foreground': p.subtleFg,
+    'sideBarSectionHeader.background': surface,
+    'sideBarSectionHeader.foreground': p.subtleFg,
+    'sideBarSectionHeader.border': border,
+
+    'editorGroupHeader.tabsBackground': bg,
+    'editorGroupHeader.noTabsBackground': bg,
+    'editorGroup.border': border,
+    'tab.activeBackground': isDark ? mix(editor, '#FFFFFF', 0.04) : '#FFFFFF',
+    'tab.activeForeground': isDark ? '#FFFFFF' : fg,
+    'tab.inactiveBackground': tabInactive,
+    'tab.inactiveForeground': mutedFg,
+    'tab.border': bg,
+    'tab.activeBorderTop': primary,
+    'tab.hoverBackground': isDark ? mix(bg, '#FFFFFF', 0.04) : mix(surface, '#FFFFFF', 0.5),
+    'tab.unfocusedActiveBackground': surface,
+    'tab.unfocusedActiveBorderTop': withAlpha(primary, 0.4),
+
+    'panel.background': surface,
+    'panel.border': border,
+    'panelTitle.activeForeground': isDark ? '#FFFFFF' : fg,
+    'panelTitle.inactiveForeground': mutedFg,
+    'panelTitle.activeBorder': primary,
+
+    'statusBar.background': bg,
+    'statusBar.foreground': p.subtleFg,
+    'statusBar.border': border,
+    'statusBar.debuggingBackground': warning,
+    'statusBar.debuggingForeground': '#FFFFFF',
+    'statusBar.noFolderBackground': bg,
+    'statusBarItem.hoverBackground': isDark ? mix(surface, '#FFFFFF', 0.08) : mix(surface, '#000000', 0.06),
+    'statusBarItem.remoteBackground': primary,
+    'statusBarItem.remoteForeground': p.onPrimary,
+    'statusBarItem.prominentBackground': primary,
+    'statusBarItem.prominentForeground': p.onPrimary,
+
+    'titleBar.activeBackground': bg,
+    'titleBar.activeForeground': fg,
+    'titleBar.inactiveBackground': bg,
+    'titleBar.inactiveForeground': mutedFg,
+    'titleBar.border': border,
+
+    'menu.background': isDark ? surface : '#FFFFFF',
+    'menu.foreground': fg,
+    'menu.selectionBackground': withAlpha(primary, isDark ? 0.22 : 0.14),
+    'menu.separatorBackground': border,
+    'menubar.selectionBackground': isDark ? mix(surface, '#FFFFFF', 0.08) : mix(surface, '#000000', 0.04),
+
+    'scrollbar.shadow': isDark ? '#00000066' : '#00000022',
+    'scrollbarSlider.background': isDark ? '#FFFFFF22' : '#00000022',
+    'scrollbarSlider.hoverBackground': isDark ? '#FFFFFF33' : '#00000033',
+    'scrollbarSlider.activeBackground': isDark ? '#FFFFFF44' : '#00000044',
+
+    'selection.background': withAlpha(primary, isDark ? 0.25 : 0.18),
+    'widget.shadow': isDark ? '#00000055' : '#00000022',
+    'widget.border': border,
+
+    'notifications.background': surface,
+    'notifications.foreground': fg,
+    'notifications.border': border,
+    'notificationCenterHeader.background': bg,
+    'notificationsInfoIcon.foreground': primary,
+    'notificationsWarningIcon.foreground': warning,
+    'notificationsErrorIcon.foreground': error,
+
+    'extensionButton.prominentBackground': primary,
+    'extensionButton.prominentForeground': p.onPrimary,
+    'extensionButton.prominentHoverBackground': mix(primary, fg, 0.15),
+
+    'debugToolBar.background': surface,
+
+    'gitDecoration.addedResourceForeground': success,
+    'gitDecoration.modifiedResourceForeground': info,
+    'gitDecoration.deletedResourceForeground': error,
+    'gitDecoration.untrackedResourceForeground': mix(success, '#FFFFFF', 0.15),
+    'gitDecoration.ignoredResourceForeground': mutedFg,
+    'gitDecoration.conflictingResourceForeground': warning,
+
+  ...(isDark
+      ? {
+          'window.activeBorder': primary,
+          'window.inactiveBorder': border,
+          'textPreformat.foreground': fg,
+        }
+      : {}),
+  };
+}
