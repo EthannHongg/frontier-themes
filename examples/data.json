@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Frontier Themes catalog entry",
+  "type": "object",
+  "required": ["id", "name", "mode", "colors"],
+  "properties": {
+    "id": { "type": "string", "examples": ["openai", "anthropic", "linear"] },
+    "name": { "type": "string" },
+    "mode": { "enum": ["dark", "light"] },
+    "colors": {
+      "type": "object",
+      "properties": {
+        "primary": { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}$" },
+        "secondary": { "type": "string" },
+        "accent": { "type": "string" }
+      }
+    },
+    "features": {
+      "semanticTokenColors": true,
+      "gitlens": true,
+      "jupyter": true,
+      "tokenRules": 68
+  }
+  },
+  "examples": [
+    {
+      "id": "openai",
+      "name": "OpenAI",
+      "mode": "dark",
+      "colors": { "primary": "#10A37F", "secondary": "#1A7F64", "accent": "#3B82F6" }
+    }
+  ]
+}

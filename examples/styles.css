@@ -1,0 +1,46 @@
+/* CSS sample — selectors, properties, units, colors */
+
+:root {
+  --brand-primary: #10a37f;
+  --brand-surface: #212121;
+  --radius: 12px;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: var(--brand-surface);
+    color: #ececec;
+  }
+}
+
+.card {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
+  padding: 1rem 1.5rem;
+  border-radius: var(--radius);
+  transition: transform 200ms ease, box-shadow 200ms ease;
+}
+
+.card:hover,
+.card:focus-within {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgb(0 0 0 / 25%);
+}
+
+#hero .title {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  letter-spacing: -0.02em;
+}
+
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.6; }
+  100% { opacity: 1; }
+}
+
+.badge::before {
+  content: "•";
+  margin-right: 0.5em;
+  color: var(--brand-primary);
+}

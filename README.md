@@ -183,6 +183,10 @@ npm run package    # build .vsix
 
 Press **F5** in VS Code to launch an Extension Development Host.
 
+### Preview samples
+
+Open the [`examples/`](examples/) folder (or `examples/examples.code-workspace`) to view language samples that exercise syntax, semantic tokens, brackets, Markdown headings, CSS/HTML, JSON, and terminal ANSI colors.
+
 ## Contributing
 
 Report bugs and suggestions on [GitHub Issues](https://github.com/EthannHongg/frontier-themes/issues).

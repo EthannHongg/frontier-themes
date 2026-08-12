@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Frontier Themes — HTML Sample</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      .inline-style { color: var(--brand-primary, #10a37f); }
+    </style>
+  </head>
+  <body>
+  <header id="hero">
+    <h1 class="title">HTML &amp; attribute highlighting</h1>
+    <p data-theme="openai-dark" class="inline-style">
+      Tags, attributes, strings, and embedded script blocks.
+    </p>
+  </header>
+
+  <main class="card">
+    <section>
+      <h2>Form controls</h2>
+      <form action="/submit" method="post">
+        <label for="email">Email</label>
+        <input id="email" type="email" placeholder="you@example.com" required />
+        <button type="submit">Send</button>
+      </form>
+    </section>
+
+    <section>
+      <h2>Lists</h2>
+      <ul>
+        <li>Semantic <code>tokenColors</code></li>
+        <li>Bracket pair colorization</li>
+        <li>GitLens &amp; Jupyter keys</li>
+      </ul>
+    </section>
+  </main>
+
+  <script>
+    const THEMES = ['OpenAI Dark', 'Anthropic Light', 'Linear Dark'];
+    document.querySelector('button')?.addEventListener('click', (event) => {
+      event.preventDefault();
+      console.log('Preview themes:', THEMES.join(', '));
+    });
+  </script>
+  </body>
+</html>
