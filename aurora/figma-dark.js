@@ -1,4 +1,4 @@
-/* Aurora background — Figma dark — Brand Themes extension */
+/* Aurora background — Figma dark — Frontier Themes extension */
 (function () {
   const CONFIG = {
     opacity: 0.6,

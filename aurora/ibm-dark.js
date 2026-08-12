@@ -1,4 +1,4 @@
-/* Aurora background — IBM dark — Brand Themes extension */
+/* Aurora background — IBM dark — Frontier Themes extension */
 (function () {
   const CONFIG = {
     opacity: 0.6,

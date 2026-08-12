@@ -31,7 +31,7 @@ function buildAuroraScript(brand, mode) {
   const scrimBase = isDark ? [0.016, 0.02, 0.04] : [0.96, 0.97, 0.99];
   const widgetBg = isDark ? 'rgba(16,18,26,0.92)' : 'rgba(255,255,255,0.94)';
 
-  return `/* Aurora background — ${brand.name} ${mode} — Brand Themes extension */
+  return `/* Aurora background — ${brand.name} ${mode} — Frontier Themes extension */
 (function () {
   const CONFIG = {
     opacity: ${opacity},

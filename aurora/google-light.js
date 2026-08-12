@@ -1,4 +1,4 @@
-/* Aurora background — Google light — Brand Themes extension */
+/* Aurora background — Google light — Frontier Themes extension */
 (function () {
   const CONFIG = {
     opacity: 0.45,

@@ -1,4 +1,4 @@
-/* Aurora background — Stability AI light — Brand Themes extension */
+/* Aurora background — Stability AI light — Frontier Themes extension */
 (function () {
   const CONFIG = {
     opacity: 0.45,

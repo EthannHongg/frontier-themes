@@ -1,4 +1,4 @@
-/* Aurora background — Mistral light — Brand Themes extension */
+/* Aurora background — Mistral light — Frontier Themes extension */
 (function () {
   const CONFIG = {
     opacity: 0.45,

@@ -1,4 +1,4 @@
-/* Aurora background — Vercel light — Brand Themes extension */
+/* Aurora background — Vercel light — Frontier Themes extension */
 (function () {
   const CONFIG = {
     opacity: 0.45,

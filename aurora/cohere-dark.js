@@ -1,4 +1,4 @@
-/* Aurora background — Cohere dark — Brand Themes extension */
+/* Aurora background — Cohere dark — Frontier Themes extension */
 (function () {
   const CONFIG = {
     opacity: 0.6,

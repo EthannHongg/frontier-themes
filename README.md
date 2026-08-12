@@ -1,135 +1,167 @@
-# Brand Themes
+<p align="center">
+  <strong>Frontier Themes</strong>
+</p>
 
-**48 editor color themes** inspired by top tech companies and AI startups — for **VS Code** and **Cursor**. Each brand has light and dark variants, plus an optional **animated aurora background** tuned to that brand's palette.
+<p align="center">
+  Brand-inspired color themes for VS Code &amp; Cursor — with live preview and optional aurora backgrounds.
+</p>
 
-![Brand Themes](media/banner.png)
+<p align="center">
+  <img src="media/banner.png" alt="Frontier Themes preview" width="720">
+</p>
 
-## Themes included
+## About
 
-### Big Tech (12 brands × 2 modes)
+Frontier Themes is a collection of **48 color themes** (light + dark) inspired by well-known tech companies and AI startups. Each theme includes syntax highlighting, workbench colors, and terminal palettes tuned to that brand.
 
-Google · Apple · Meta · Amazon · Netflix · Microsoft · NVIDIA · Tesla · SpaceX · Salesforce · Adobe · IBM
+Use the **status bar picker** to switch themes quickly, **preview with ↑↓** before applying, and optionally enable a **brand-matched aurora** animated background.
 
-### AI & Startups (12 brands × 2 modes)
+> Brand names and colors are inspired by public identities. This project is not affiliated with or endorsed by any company listed.
 
-OpenAI · Anthropic · Perplexity · Cursor · Mistral · Cohere · Stability AI · Hugging Face · Replicate · Vercel · Linear · Figma
+## Installation
 
-## Install
+### Marketplace / VSIX
 
-### From VSIX (local / Cursor)
+Launch **Quick Open**
 
-```bash
-# In this repo
-npm install
-npm run generate
-npm run package
-```
+- Linux `Ctrl+P`
+- macOS `⌘P`
+- Windows `Ctrl+P`
 
-Then in VS Code or Cursor:
-
-1. Extensions panel → `...` menu → **Install from VSIX**
-2. Select `brand-themes-1.0.0.vsix`
-
-### From Marketplace (after publish)
-
-Search **Brand Themes** in the Extensions panel.
-
-### From source (development)
+Install from a packaged VSIX:
 
 ```bash
-git clone https://github.com/EthannHongg/brand-themes.git
-cd brand-themes
-npm install
-npm run generate
+git clone https://github.com/EthannHongg/frontier-themes.git
+cd frontier-themes
+npm install && npm run generate && npm run package
 ```
 
-Then press **F5** in VS Code to launch an Extension Development Host, or symlink/copy the folder into your extensions directory.
+Then: Extensions → `...` → **Install from VSIX** → select `frontier-themes-1.1.0.vsix`
 
-## Quick start
+Or search **Frontier Themes** on the VS Code Marketplace (after publish).
 
-1. **Pick a theme** — click the **color icon** in the status bar (bottom-right), or run **Brand Themes: Pick Theme** from the Command Palette (`Ctrl+Shift+P`).
-2. **Optional aurora** — click **Aurora Off** in the status bar to enable a brand-matched animated background.
+### Activate a theme
 
-Themes are also available under **Preferences → Color Theme** like any other theme pack.
+1. Click **`$(symbol-color)`** in the status bar (bottom-right), **or**
+2. Command Palette → **Frontier Themes: Pick Theme**, **or**
+3. Gear menu → **Color Theme** → pick e.g. `OpenAI Dark`
 
-## Status bar picker
+## Variants
 
-This extension adds two items to the **status bar** (bottom of the window):
+### Big Tech
 
-| Item | Action |
-|------|--------|
-| `$(symbol-color) OpenAI` | Opens a grouped quick-pick: **Big Tech** and **AI & Startups** |
-| `$(sparkle) Aurora On/Off` | Toggles the animated aurora for the active brand theme |
+| | Dark | Light |
+|---|:---:|:---:|
+| Google | ✓ | ✓ |
+| Apple | ✓ | ✓ |
+| Meta | ✓ | ✓ |
+| Amazon | ✓ | ✓ |
+| Netflix | ✓ | ✓ |
+| Microsoft | ✓ | ✓ |
+| NVIDIA | ✓ | ✓ |
+| Tesla | ✓ | ✓ |
+| SpaceX | ✓ | ✓ |
+| Salesforce | ✓ | ✓ |
+| Adobe | ✓ | ✓ |
+| IBM | ✓ | ✓ |
 
-VS Code does not support a native dropdown in the title bar; the status-bar quick-pick is the standard pattern (similar to the Git branch picker).
+### AI & Startups
 
-## Aurora backgrounds
+| | Dark | Light |
+|---|:---:|:---:|
+| OpenAI | ✓ | ✓ |
+| Anthropic | ✓ | ✓ |
+| Perplexity | ✓ | ✓ |
+| Cursor | ✓ | ✓ |
+| Mistral | ✓ | ✓ |
+| Cohere | ✓ | ✓ |
+| Stability AI | ✓ | ✓ |
+| Hugging Face | ✓ | ✓ |
+| Replicate | ✓ | ✓ |
+| Vercel | ✓ | ✓ |
+| Linear | ✓ | ✓ |
+| Figma | ✓ | ✓ |
 
-Aurora uses the approach from [AuroraBg](https://github.com/crlang44/AuroraBg) — a WebGL shader behind transparent editor surfaces. Each brand/mode has its own aurora script with palette colors derived from that brand.
+## Features
 
-**Requirements for aurora:**
+### Theme picker with color swatches
 
-1. Install [**Custom CSS and JS Loader**](https://marketplace.visualstudio.com/items?itemName=be5invis.vscode-custom-css)  
-   - VS Code Marketplace: `be5invis.vscode-custom-css`  
-   - Open VSX / Antigravity: `s-h-a-d-o-w.vscode-custom-css`
-2. Enable aurora via the status bar toggle or **Brand Themes: Enable Aurora Background**
-3. When prompted, run **Enable Custom CSS and JS** and reload
+The quick-pick menu shows a **color swatch icon** per theme (primary, secondary, accent on the editor background).
 
-**Notes:**
+### Live preview (↑↓)
 
-- Aurora is a **toggle**, not a separate theme — keep `OpenAI Dark` and flip aurora on/off.
-- After VS Code/Cursor updates, re-run **Enable Custom CSS and JS**.
-- You may see an “installation appears corrupt” warning — expected with custom CSS; dismiss it.
+While the picker is open:
+
+- **↑ / ↓** — instantly preview the highlighted theme
+- **Enter** — apply the selection
+- **Esc** — cancel and **revert** to your previous theme
+
+### Aurora backgrounds (optional)
+
+A slow, iridescent animated background behind your editor — adapted from [AuroraBg](https://github.com/crlang44/AuroraBg) with per-brand palette tuning.
+
+Toggle via **`$(sparkle) Aurora On/Off`** in the status bar.
+
+#### Cursor / helper extension
+
+Aurora injects a small WebGL script into the editor UI. That requires a **helper extension** — the classic one is [Custom CSS and JS Loader](https://marketplace.visualstudio.com/items?itemName=be5invis.vscode-custom-css), which is **not listed in Cursor's marketplace**.
+
+**In Cursor (recommended flow):**
+
+1. Toggle **Aurora On** in the status bar
+2. Click **Install Helper** — Frontier Themes downloads and installs the VSIX automatically
+3. Command Palette → **Enable Custom CSS and JS** (administrator on Windows)
+4. Reload when prompted
+
+**Manual install:**
+
+```bash
+cursor --install-extension path/to/vscode-custom-css.vsix
+```
+
+Download the VSIX from the [Marketplace page](https://marketplace.visualstudio.com/items?itemName=be5invis.vscode-custom-css).
+
+**Alternative:** Install [Custom UI Style](https://marketplace.visualstudio.com/items?itemName=subframe7536.custom-ui-style) — Frontier Themes detects it and wires aurora through `custom-ui-style.external.imports`.
+
+Command Palette → **Frontier Themes: Install Aurora Helper Extension** at any time.
 
 ## Commands
 
 | Command | Description |
 |---------|-------------|
-| `Brand Themes: Pick Theme` | Quick-pick all 48 themes |
-| `Brand Themes: Pick by Category` | Filter Big Tech vs Startups first |
-| `Brand Themes: Toggle Aurora Background` | On/off aurora for current theme |
-| `Brand Themes: Enable Aurora Background` | Turn aurora on |
-| `Brand Themes: Disable Aurora Background` | Turn aurora off |
+| `Frontier Themes: Pick Theme` | Open picker with swatches and live preview |
+| `Frontier Themes: Pick by Category` | Big Tech or AI & Startups first |
+| `Frontier Themes: Toggle Aurora Background` | On / off aurora for current theme |
+| `Frontier Themes: Install Aurora Helper Extension` | Install CSS/JS loader (Cursor-friendly) |
 
 ## Settings
 
 | Setting | Default | Description |
 |---------|---------|-------------|
-| `brandThemes.aurora.enabled` | `false` | Aurora on/off (synced with status bar) |
-| `brandThemes.showStatusBarPicker` | `true` | Show status bar controls |
-
-## Publish to Marketplace
-
-1. Create a [publisher](https://marketplace.visualstudio.com/manage) on the VS Code Marketplace
-2. Update `publisher` in `package.json` to your publisher id
-3. `npx vsce login <publisher>`
-4. `npm run publish`
-
-## Publish to GitHub
-
-```bash
-git init
-git add .
-git commit -m "Initial release: 48 brand themes with aurora toggle"
-gh repo create brand-themes --public --source=. --push
-```
-
-The repository is hosted at [github.com/EthannHongg/brand-themes](https://github.com/EthannHongg/brand-themes).
+| `frontierThemes.aurora.enabled` | `false` | Aurora on/off |
+| `frontierThemes.showStatusBarPicker` | `true` | Status bar theme + aurora controls |
 
 ## Development
 
 ```bash
-npm run generate   # Regenerate themes/ and aurora/ from scripts/brands.json
-npm run package    # Build .vsix
+npm run generate   # themes + aurora scripts from scripts/brands.json
+npm run package    # build .vsix
 ```
 
-Edit brand palettes in `scripts/brands.json`, then run `npm run generate`.
+Press **F5** in VS Code to launch an Extension Development Host.
 
-## License
+## Contributing
 
-MIT — see [LICENSE](LICENSE). Brand names and colors are inspired by public brand identities; this project is not affiliated with or endorsed by any company listed.
+Report bugs and suggestions on [GitHub Issues](https://github.com/EthannHongg/frontier-themes/issues).
 
 ## Credits
 
-- Aurora shader adapted from [crlang44/AuroraBg](https://github.com/crlang44/AuroraBg)
-- Original OpenAI & Anthropic themes from the local `ai-brand-themes` extension
+- [AuroraBg](https://github.com/crlang44/AuroraBg) — aurora shader approach
+- [Gruvbox Theme](https://github.com/jdinhify/vscode-theme-gruvbox) — README structure inspiration
+- Original OpenAI & Anthropic palettes from the early local theme pack
+
+## License
+
+MIT — see [LICENSE](LICENSE).
+
+Copyright (C) 2026 [EthannHongg](https://github.com/EthannHongg)

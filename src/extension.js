@@ -1,13 +1,14 @@
 const vscode = require('vscode');
 const path = require('path');
 const fs = require('fs');
-
-const CUSTOM_CSS_SETTING = 'vscode_custom_css.imports';
-const AURORA_MARKER = 'brand-themes-aurora';
-const CUSTOM_CSS_EXTENSIONS = [
-  'be5invis.vscode-custom-css',
-  's-h-a-d-o-w.vscode-custom-css',
-];
+const {
+  detectAuroraBackend,
+  applyAuroraImport,
+  removeAuroraImport,
+  reloadAuroraBackend,
+  enableAuroraBackend,
+  promptInstallAuroraHelper,
+} = require('./auroraBackends');
 
 /** @type {vscode.StatusBarItem | undefined} */
 let themeStatusBar;
@@ -15,31 +16,14 @@ let themeStatusBar;
 let auroraStatusBar;
 /** @type {string | undefined} */
 let extensionPath;
+/** @type {vscode.ExtensionContext | undefined} */
+let extensionContext;
 
 /** @type {import('./themeCatalog.json')} */
 let catalog = [];
 
-/**
- * @param {string} filePath
- * @returns {string}
- */
-function toFileUri(filePath) {
-  const normalized = filePath.replace(/\\/g, '/');
-  if (/^[a-zA-Z]:/.test(normalized)) {
-    return `file:///${normalized}`;
-  }
-  return `file://${normalized}`;
-}
-
-/**
- * @returns {string | undefined}
- */
-function getExtensionRoot() {
-  return extensionPath;
-}
-
 function loadCatalog() {
-  const root = getExtensionRoot();
+  const root = extensionPath;
   if (!root) return [];
   const catalogPath = path.join(root, 'src', 'themeCatalog.json');
   return JSON.parse(fs.readFileSync(catalogPath, 'utf8'));
@@ -61,20 +45,35 @@ function getActiveCatalogEntry() {
   return findCatalogEntry(current);
 }
 
+/**
+ * @param {import('./themeCatalog.json')[number]} entry
+ * @returns {vscode.Uri}
+ */
+function createSwatchIcon(entry) {
+  const bg = entry.background || (entry.mode === 'dark' ? '#1e1e1e' : '#ffffff');
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22">
+    <rect width="22" height="22" rx="5" fill="${bg}" stroke="rgba(128,128,128,0.35)" stroke-width="1"/>
+    <circle cx="7.5" cy="11" r="4" fill="${entry.primary}"/>
+    <circle cx="15" cy="7.5" r="2.8" fill="${entry.secondary}"/>
+    <circle cx="15" cy="14.5" r="2.8" fill="${entry.accent}"/>
+  </svg>`;
+  return vscode.Uri.parse(`data:image/svg+xml,${encodeURIComponent(svg)}`);
+}
+
 function updateThemeStatusBar() {
   if (!themeStatusBar) return;
   const active = getActiveCatalogEntry();
   if (active) {
     themeStatusBar.text = `$(symbol-color) ${active.name}`;
-    themeStatusBar.tooltip = `Brand Themes: ${active.label}\nClick to switch theme`;
+    themeStatusBar.tooltip = `Frontier Themes: ${active.label}\nClick to switch — ↑↓ to preview`;
   } else {
-    themeStatusBar.text = '$(symbol-color) Brand Themes';
-    themeStatusBar.tooltip = 'Click to pick a brand theme';
+    themeStatusBar.text = '$(symbol-color) Frontier Themes';
+    themeStatusBar.tooltip = 'Click to pick a theme — use ↑↓ to preview';
   }
 }
 
 function isAuroraEnabled() {
-  return vscode.workspace.getConfiguration('brandThemes').get('aurora.enabled', false);
+  return vscode.workspace.getConfiguration('frontierThemes').get('aurora.enabled', false);
 }
 
 function updateAuroraStatusBar() {
@@ -90,92 +89,148 @@ function updateAuroraStatusBar() {
 }
 
 /**
- * @returns {boolean}
- */
-function hasCustomCssLoader() {
-  return CUSTOM_CSS_EXTENSIONS.some((id) => vscode.extensions.getExtension(id));
-}
-
-/**
  * @param {import('./themeCatalog.json')[number]} entry
  * @returns {string | undefined}
  */
 function getAuroraScriptPath(entry) {
-  const root = getExtensionRoot();
+  const root = extensionPath;
   if (!root) return undefined;
   return path.join(root, 'aurora', `${entry.id}-${entry.mode}.js`);
-}
-
-/**
- * @param {string[]} imports
- * @returns {string[]}
- */
-function stripAuroraImports(imports) {
-  return imports.filter((item) => !item.includes(AURORA_MARKER));
 }
 
 /**
  * @param {import('./themeCatalog.json')[number]} entry
  * @returns {Promise<void>}
  */
-async function applyAuroraImport(entry) {
+async function syncAuroraForEntry(entry) {
+  const backend = detectAuroraBackend();
+  if (!backend || !isAuroraEnabled()) return;
+
   const scriptPath = getAuroraScriptPath(entry);
-  if (!scriptPath || !fs.existsSync(scriptPath)) {
-    throw new Error(`Aurora script not found for ${entry.label}`);
-  }
+  if (!scriptPath || !fs.existsSync(scriptPath)) return;
 
-  const config = vscode.workspace.getConfiguration();
-  const currentImports = config.get(CUSTOM_CSS_SETTING, []);
-  const auroraUri = `${toFileUri(scriptPath)}?${AURORA_MARKER}=${entry.id}-${entry.mode}`;
-  const cleaned = stripAuroraImports(currentImports);
-  const nextImports = [...cleaned, auroraUri];
-
-  await config.update(CUSTOM_CSS_SETTING, nextImports, vscode.ConfigurationTarget.Global);
+  await applyAuroraImport(backend, scriptPath, `${entry.id}-${entry.mode}`);
+  await reloadAuroraBackend(backend);
 }
 
-async function removeAuroraImport() {
-  const config = vscode.workspace.getConfiguration();
-  const currentImports = config.get(CUSTOM_CSS_SETTING, []);
-  const cleaned = stripAuroraImports(currentImports);
-  if (cleaned.length !== currentImports.length) {
-    await config.update(CUSTOM_CSS_SETTING, cleaned, vscode.ConfigurationTarget.Global);
+/**
+ * @param {string} themeLabel
+ * @returns {Promise<void>}
+ */
+async function applyTheme(themeLabel) {
+  await vscode.workspace.getConfiguration().update('workbench.colorTheme', themeLabel, true);
+  const entry = findCatalogEntry(themeLabel);
+  if (entry && isAuroraEnabled()) {
+    await syncAuroraForEntry(entry);
   }
+  updateThemeStatusBar();
 }
 
-async function promptEnableCustomCss() {
-  const choice = await vscode.window.showInformationMessage(
-    'Aurora requires the "Custom CSS and JS Loader" extension. Enable Custom CSS now?',
-    'Enable Custom CSS',
-    'Install Extension',
-    'Cancel'
-  );
+/**
+ * @param {import('./themeCatalog.json')} entries
+ * @returns {Array<vscode.QuickPickItem & { entry?: import('./themeCatalog.json')[number] }>}
+ */
+function buildThemeQuickPickItems(entries) {
+  /** @type {Array<vscode.QuickPickItem & { entry?: import('./themeCatalog.json')[number] }>} */
+  const items = [];
+  const bigtech = entries.filter((c) => c.category === 'bigtech');
+  const startups = entries.filter((c) => c.category === 'startups');
 
-  if (choice === 'Install Extension') {
-    await vscode.commands.executeCommand(
-      'workbench.extensions.search',
-      'Custom CSS and JS Loader'
-    );
-    return false;
+  items.push({ label: 'Big Tech', kind: vscode.QuickPickItemKind.Separator });
+  for (const entry of bigtech) {
+    items.push({
+      label: entry.label,
+      description: entry.mode === 'dark' ? 'Dark' : 'Light',
+      detail: entry.name,
+      iconPath: createSwatchIcon(entry),
+      entry,
+    });
   }
 
-  if (choice === 'Enable Custom CSS') {
-    try {
-      await vscode.commands.executeCommand('extension.installCustomCSS');
-      return true;
-    } catch {
-      try {
-        await vscode.commands.executeCommand('vscode_custom_css.install');
-        return true;
-      } catch {
-        vscode.window.showWarningMessage(
-          'Could not auto-enable Custom CSS. Run "Enable Custom CSS and JS" from the Command Palette, then reload.'
-        );
-        return false;
+  items.push({ label: 'AI & Startups', kind: vscode.QuickPickItemKind.Separator });
+  for (const entry of startups) {
+    items.push({
+      label: entry.label,
+      description: entry.mode === 'dark' ? 'Dark' : 'Light',
+      detail: entry.name,
+      iconPath: createSwatchIcon(entry),
+      entry,
+    });
+  }
+
+  return items;
+}
+
+/**
+ * @param {import('./themeCatalog.json')} entries
+ * @param {string} placeHolder
+ * @returns {Promise<import('./themeCatalog.json')[number] | undefined>}
+ */
+function showThemePickerWithPreview(entries, placeHolder) {
+  return new Promise((resolve) => {
+    const originalTheme = vscode.workspace.getConfiguration().get('workbench.colorTheme');
+    const selectableItems = buildThemeQuickPickItems(entries);
+    const active = getActiveCatalogEntry();
+
+    const quickPick = vscode.window.createQuickPick();
+    quickPick.title = 'Frontier Themes';
+    quickPick.placeholder = `${placeHolder} — ↑↓ to preview, Enter to apply, Esc to cancel`;
+    quickPick.matchOnDescription = true;
+    quickPick.matchOnDetail = true;
+    quickPick.items = selectableItems;
+
+    if (active) {
+      const activeItem = selectableItems.find((item) => item.entry?.label === active.label);
+      if (activeItem) {
+        quickPick.activeItems = [activeItem];
       }
     }
-  }
 
-  return false;
+    let accepted = false;
+    let previewing = false;
+    let lastPreviewLabel = originalTheme;
+
+    const previewTheme = async (/** @type {typeof selectableItems[number] | undefined} */ item) => {
+      if (!item?.entry) return;
+      if (item.entry.label === lastPreviewLabel) return;
+      lastPreviewLabel = item.entry.label;
+      previewing = true;
+      await applyTheme(item.entry.label);
+    };
+
+    quickPick.onDidChangeActive((activeItems) => {
+      const item = activeItems[0];
+      if (item?.kind === vscode.QuickPickItemKind.Separator) return;
+      previewTheme(item).catch(() => undefined);
+    });
+
+    quickPick.onDidAccept(() => {
+      accepted = true;
+      const item = quickPick.selectedItems[0] || quickPick.activeItems[0];
+      quickPick.hide();
+      resolve(item?.entry);
+    });
+
+    quickPick.onDidHide(() => {
+      if (!accepted && previewing) {
+        vscode.workspace
+          .getConfiguration()
+          .update('workbench.colorTheme', originalTheme, true)
+          .then(() => {
+            const originalEntry = findCatalogEntry(originalTheme);
+            if (originalEntry && isAuroraEnabled()) {
+              return syncAuroraForEntry(originalEntry);
+            }
+            return undefined;
+          })
+          .finally(() => updateThemeStatusBar());
+      }
+      quickPick.dispose();
+      if (!accepted) resolve(undefined);
+    });
+
+    quickPick.show();
+  });
 }
 
 /**
@@ -184,57 +239,48 @@ async function promptEnableCustomCss() {
 async function setAuroraEnabled(enabled) {
   const entry = getActiveCatalogEntry();
   if (enabled && !entry) {
-    vscode.window.showWarningMessage('Select a Brand Theme first, then enable Aurora.');
+    vscode.window.showWarningMessage('Select a Frontier theme first, then enable Aurora.');
     return;
   }
 
-  if (enabled && !hasCustomCssLoader()) {
-    const installed = await promptEnableCustomCss();
-    if (!installed && !hasCustomCssLoader()) {
-      return;
-    }
+  let backend = detectAuroraBackend();
+  if (enabled && !backend) {
+    if (!extensionContext) return;
+    const installed = await promptInstallAuroraHelper(extensionContext);
+    backend = detectAuroraBackend();
+    if (!installed && !backend) return;
   }
 
   await vscode.workspace
-    .getConfiguration('brandThemes')
+    .getConfiguration('frontierThemes')
     .update('aurora.enabled', enabled, vscode.ConfigurationTarget.Global);
 
-  if (enabled && entry) {
+  if (enabled && entry && backend) {
     try {
-      await applyAuroraImport(entry);
-      if (hasCustomCssLoader()) {
-        const reload = await vscode.window.showInformationMessage(
-          `Aurora enabled for ${entry.label}. Reload Custom CSS to apply?`,
-          'Reload Custom CSS',
-          'Later'
-        );
-        if (reload === 'Reload Custom CSS') {
-          try {
-            await vscode.commands.executeCommand('extension.updateCustomCSS');
-          } catch {
-            await vscode.commands.executeCommand('vscode_custom_css.reload');
-          }
-        }
-      } else {
-        vscode.window.showInformationMessage(
-          'Aurora script path saved. Install Custom CSS and JS Loader, enable it, then reload.'
-        );
+      const scriptPath = getAuroraScriptPath(entry);
+      if (!scriptPath || !fs.existsSync(scriptPath)) {
+        throw new Error(`Aurora script not found for ${entry.label}`);
+      }
+      await applyAuroraImport(backend, scriptPath, `${entry.id}-${entry.mode}`);
+
+      const enabledBackend = await enableAuroraBackend(backend);
+      const reload = await vscode.window.showInformationMessage(
+        `Aurora enabled for ${entry.label}.${enabledBackend ? '' : ' Run the helper extension enable command if needed.'} Reload now?`,
+        'Reload Helper',
+        'Later'
+      );
+      if (reload === 'Reload Helper') {
+        await reloadAuroraBackend(backend);
       }
     } catch (err) {
       vscode.window.showErrorMessage(`Failed to enable Aurora: ${err.message}`);
       await vscode.workspace
-        .getConfiguration('brandThemes')
+        .getConfiguration('frontierThemes')
         .update('aurora.enabled', false, vscode.ConfigurationTarget.Global);
     }
-  } else {
-    await removeAuroraImport();
-    if (hasCustomCssLoader()) {
-      try {
-        await vscode.commands.executeCommand('extension.updateCustomCSS');
-      } catch {
-        /* optional reload */
-      }
-    }
+  } else if (!enabled) {
+    await removeAuroraImport(backend);
+    if (backend) await reloadAuroraBackend(backend);
   }
 
   updateAuroraStatusBar();
@@ -245,53 +291,8 @@ async function toggleAurora() {
 }
 
 async function pickTheme() {
-  const bigtech = catalog.filter((c) => c.category === 'bigtech');
-  const startups = catalog.filter((c) => c.category === 'startups');
-
-  /** @type {vscode.QuickPickItem[]} */
-  const items = [
-    { label: 'Big Tech', kind: vscode.QuickPickItemKind.Separator },
-    ...bigtech.map((entry) => ({
-      label: entry.label,
-      description: entry.mode === 'dark' ? 'Dark' : 'Light',
-      detail: entry.name,
-    })),
-    { label: 'AI & Startups', kind: vscode.QuickPickItemKind.Separator },
-    ...startups.map((entry) => ({
-      label: entry.label,
-      description: entry.mode === 'dark' ? 'Dark' : 'Light',
-      detail: entry.name,
-    })),
-  ];
-
-  const active = getActiveCatalogEntry();
-  const picked = await vscode.window.showQuickPick(items, {
-    placeHolder: 'Choose a brand theme',
-    matchOnDescription: true,
-    matchOnDetail: true,
-  });
-
-  if (!picked || picked.kind === vscode.QuickPickItemKind.Separator) {
-    return;
-  }
-
-  await vscode.workspace.getConfiguration().update('workbench.colorTheme', picked.label, true);
-
-  if (isAuroraEnabled()) {
-    const entry = findCatalogEntry(picked.label);
-    if (entry) {
-      await applyAuroraImport(entry);
-      if (hasCustomCssLoader()) {
-        try {
-          await vscode.commands.executeCommand('extension.updateCustomCSS');
-        } catch {
-          /* ignore */
-        }
-      }
-    }
-  }
-
-  updateThemeStatusBar();
+  const picked = await showThemePickerWithPreview(catalog, 'Choose a brand theme');
+  if (picked) updateThemeStatusBar();
 }
 
 async function pickThemeByCategory() {
@@ -306,62 +307,58 @@ async function pickThemeByCategory() {
   if (!category) return;
 
   const filtered = catalog.filter((c) => c.category === category.id);
-  const picked = await vscode.window.showQuickPick(
-    filtered.map((entry) => ({
-      label: entry.label,
-      description: entry.mode === 'dark' ? 'Dark' : 'Light',
-      detail: entry.name,
-    })),
-    { placeHolder: `Pick a ${category.id === 'bigtech' ? 'Big Tech' : 'Startup'} theme` }
+  const picked = await showThemePickerWithPreview(
+    filtered,
+    `Pick a ${category.id === 'bigtech' ? 'Big Tech' : 'Startup'} theme`
   );
-
-  if (!picked) return;
-  await vscode.workspace.getConfiguration().update('workbench.colorTheme', picked.label, true);
-
-  if (isAuroraEnabled()) {
-    const entry = findCatalogEntry(picked.label);
-    if (entry) await applyAuroraImport(entry);
-  }
-
-  updateThemeStatusBar();
+  if (picked) updateThemeStatusBar();
 }
 
 /**
  * @param {vscode.ExtensionContext} context
  */
 function activate(context) {
+  extensionContext = context;
   extensionPath = context.extension.extensionPath;
   catalog = loadCatalog();
 
-  themeStatusBar = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, 200);
-  themeStatusBar.command = 'brandThemes.pickTheme';
-  themeStatusBar.show();
-  updateThemeStatusBar();
+  const showPicker = vscode.workspace
+    .getConfiguration('frontierThemes')
+    .get('showStatusBarPicker', true);
 
-  auroraStatusBar = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, 199);
-  auroraStatusBar.command = 'brandThemes.toggleAurora';
-  auroraStatusBar.show();
-  updateAuroraStatusBar();
+  if (showPicker) {
+    themeStatusBar = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, 200);
+    themeStatusBar.command = 'frontierThemes.pickTheme';
+    themeStatusBar.show();
+    updateThemeStatusBar();
+
+    auroraStatusBar = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, 199);
+    auroraStatusBar.command = 'frontierThemes.toggleAurora';
+    auroraStatusBar.show();
+    updateAuroraStatusBar();
+  }
 
   context.subscriptions.push(
     themeStatusBar,
     auroraStatusBar,
-    vscode.commands.registerCommand('brandThemes.pickTheme', pickTheme),
-    vscode.commands.registerCommand('brandThemes.pickThemeByCategory', pickThemeByCategory),
-    vscode.commands.registerCommand('brandThemes.toggleAurora', toggleAurora),
-    vscode.commands.registerCommand('brandThemes.enableAurora', () => setAuroraEnabled(true)),
-    vscode.commands.registerCommand('brandThemes.disableAurora', () => setAuroraEnabled(false)),
+    vscode.commands.registerCommand('frontierThemes.pickTheme', pickTheme),
+    vscode.commands.registerCommand('frontierThemes.pickThemeByCategory', pickThemeByCategory),
+    vscode.commands.registerCommand('frontierThemes.toggleAurora', toggleAurora),
+    vscode.commands.registerCommand('frontierThemes.enableAurora', () => setAuroraEnabled(true)),
+    vscode.commands.registerCommand('frontierThemes.disableAurora', () => setAuroraEnabled(false)),
+    vscode.commands.registerCommand('frontierThemes.installAuroraHelper', () => {
+      if (extensionContext) return promptInstallAuroraHelper(extensionContext);
+      return undefined;
+    }),
     vscode.workspace.onDidChangeConfiguration((event) => {
       if (event.affectsConfiguration('workbench.colorTheme')) {
         updateThemeStatusBar();
         if (isAuroraEnabled()) {
-          const entry = getActiveCatalogEntry();
-          if (entry) {
-            applyAuroraImport(entry).catch(() => undefined);
-          }
+          const active = getActiveCatalogEntry();
+          if (active) syncAuroraForEntry(active).catch(() => undefined);
         }
       }
-      if (event.affectsConfiguration('brandThemes.aurora.enabled')) {
+      if (event.affectsConfiguration('frontierThemes.aurora.enabled')) {
         updateAuroraStatusBar();
       }
     })

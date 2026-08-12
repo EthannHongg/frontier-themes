@@ -1,4 +1,4 @@
-/* Aurora background — NVIDIA light — Brand Themes extension */
+/* Aurora background — NVIDIA light — Frontier Themes extension */
 (function () {
   const CONFIG = {
     opacity: 0.45,

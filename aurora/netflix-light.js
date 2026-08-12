@@ -1,4 +1,4 @@
-/* Aurora background — Netflix light — Brand Themes extension */
+/* Aurora background — Netflix light — Frontier Themes extension */
 (function () {
   const CONFIG = {
     opacity: 0.45,

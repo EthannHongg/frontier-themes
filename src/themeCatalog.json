@@ -6,7 +6,10 @@
     "label": "Google Dark",
     "filename": "google-dark.json",
     "category": "bigtech",
-    "primary": "#4285F4"
+    "primary": "#4285F4",
+    "secondary": "#34A853",
+    "accent": "#EA4335",
+    "background": "#292A2D"
   },
   {
     "id": "google",
@@ -15,7 +18,10 @@
     "label": "Google Light",
     "filename": "google-light.json",
     "category": "bigtech",
-    "primary": "#4285F4"
+    "primary": "#4285F4",
+    "secondary": "#34A853",
+    "accent": "#EA4335",
+    "background": "#FFFFFF"
   },
   {
     "id": "apple",
@@ -24,7 +30,10 @@
     "label": "Apple Dark",
     "filename": "apple-dark.json",
     "category": "bigtech",
-    "primary": "#0071E3"
+    "primary": "#0071E3",
+    "secondary": "#86868B",
+    "accent": "#2997FF",
+    "background": "#2C2C2E"
   },
   {
     "id": "apple",
@@ -33,7 +42,10 @@
     "label": "Apple Light",
     "filename": "apple-light.json",
     "category": "bigtech",
-    "primary": "#0071E3"
+    "primary": "#0071E3",
+    "secondary": "#86868B",
+    "accent": "#2997FF",
+    "background": "#FFFFFF"
   },
   {
     "id": "meta",
@@ -42,7 +54,10 @@
     "label": "Meta Dark",
     "filename": "meta-dark.json",
     "category": "bigtech",
-    "primary": "#0866FF"
+    "primary": "#0866FF",
+    "secondary": "#A855F7",
+    "accent": "#E4405F",
+    "background": "#242526"
   },
   {
     "id": "meta",
@@ -51,7 +66,10 @@
     "label": "Meta Light",
     "filename": "meta-light.json",
     "category": "bigtech",
-    "primary": "#0866FF"
+    "primary": "#0866FF",
+    "secondary": "#A855F7",
+    "accent": "#E4405F",
+    "background": "#FFFFFF"
   },
   {
     "id": "amazon",
@@ -60,7 +78,10 @@
     "label": "Amazon Dark",
     "filename": "amazon-dark.json",
     "category": "bigtech",
-    "primary": "#FF9900"
+    "primary": "#FF9900",
+    "secondary": "#146EB4",
+    "accent": "#232F3E",
+    "background": "#1F2936"
   },
   {
     "id": "amazon",
@@ -69,7 +90,10 @@
     "label": "Amazon Light",
     "filename": "amazon-light.json",
     "category": "bigtech",
-    "primary": "#FF9900"
+    "primary": "#FF9900",
+    "secondary": "#146EB4",
+    "accent": "#232F3E",
+    "background": "#FFFFFF"
   },
   {
     "id": "netflix",
@@ -78,7 +102,10 @@
     "label": "Netflix Dark",
     "filename": "netflix-dark.json",
     "category": "bigtech",
-    "primary": "#E50914"
+    "primary": "#E50914",
+    "secondary": "#B20710",
+    "accent": "#F5F5F1",
+    "background": "#1F1F1F"
   },
   {
     "id": "netflix",
@@ -87,7 +114,10 @@
     "label": "Netflix Light",
     "filename": "netflix-light.json",
     "category": "bigtech",
-    "primary": "#E50914"
+    "primary": "#E50914",
+    "secondary": "#B20710",
+    "accent": "#F5F5F1",
+    "background": "#FFFFFF"
   },
   {
     "id": "microsoft",
@@ -96,7 +126,10 @@
     "label": "Microsoft Dark",
     "filename": "microsoft-dark.json",
     "category": "bigtech",
-    "primary": "#0078D4"
+    "primary": "#0078D4",
+    "secondary": "#50E6FF",
+    "accent": "#FFB900",
+    "background": "#1E1E1E"
   },
   {
     "id": "microsoft",
@@ -105,7 +138,10 @@
     "label": "Microsoft Light",
     "filename": "microsoft-light.json",
     "category": "bigtech",
-    "primary": "#0078D4"
+    "primary": "#0078D4",
+    "secondary": "#50E6FF",
+    "accent": "#FFB900",
+    "background": "#FFFFFF"
   },
   {
     "id": "nvidia",
@@ -114,7 +150,10 @@
     "label": "NVIDIA Dark",
     "filename": "nvidia-dark.json",
     "category": "bigtech",
-    "primary": "#76B900"
+    "primary": "#76B900",
+    "secondary": "#000000",
+    "accent": "#7AC043",
+    "background": "#222222"
   },
   {
     "id": "nvidia",
@@ -123,7 +162,10 @@
     "label": "NVIDIA Light",
     "filename": "nvidia-light.json",
     "category": "bigtech",
-    "primary": "#76B900"
+    "primary": "#76B900",
+    "secondary": "#000000",
+    "accent": "#7AC043",
+    "background": "#FFFFFF"
   },
   {
     "id": "tesla",
@@ -132,7 +174,10 @@
     "label": "Tesla Dark",
     "filename": "tesla-dark.json",
     "category": "bigtech",
-    "primary": "#E82127"
+    "primary": "#E82127",
+    "secondary": "#171717",
+    "accent": "#CC0000",
+    "background": "#222222"
   },
   {
     "id": "tesla",
@@ -141,7 +186,10 @@
     "label": "Tesla Light",
     "filename": "tesla-light.json",
     "category": "bigtech",
-    "primary": "#E82127"
+    "primary": "#E82127",
+    "secondary": "#171717",
+    "accent": "#CC0000",
+    "background": "#FFFFFF"
   },
   {
     "id": "spacex",
@@ -150,7 +198,10 @@
     "label": "SpaceX Dark",
     "filename": "spacex-dark.json",
     "category": "bigtech",
-    "primary": "#FFFFFF"
+    "primary": "#FFFFFF",
+    "secondary": "#005288",
+    "accent": "#A7A9AC",
+    "background": "#0D0D0D"
   },
   {
     "id": "spacex",
@@ -159,7 +210,10 @@
     "label": "SpaceX Light",
     "filename": "spacex-light.json",
     "category": "bigtech",
-    "primary": "#FFFFFF"
+    "primary": "#FFFFFF",
+    "secondary": "#005288",
+    "accent": "#A7A9AC",
+    "background": "#FFFFFF"
   },
   {
     "id": "salesforce",
@@ -168,7 +222,10 @@
     "label": "Salesforce Dark",
     "filename": "salesforce-dark.json",
     "category": "bigtech",
-    "primary": "#00A1E0"
+    "primary": "#00A1E0",
+    "secondary": "#032D60",
+    "accent": "#1B96FF",
+    "background": "#1B2F4B"
   },
   {
     "id": "salesforce",
@@ -177,7 +234,10 @@
     "label": "Salesforce Light",
     "filename": "salesforce-light.json",
     "category": "bigtech",
-    "primary": "#00A1E0"
+    "primary": "#00A1E0",
+    "secondary": "#032D60",
+    "accent": "#1B96FF",
+    "background": "#FFFFFF"
   },
   {
     "id": "adobe",
@@ -186,7 +246,10 @@
     "label": "Adobe Dark",
     "filename": "adobe-dark.json",
     "category": "bigtech",
-    "primary": "#FF0000"
+    "primary": "#FF0000",
+    "secondary": "#EB1000",
+    "accent": "#323232",
+    "background": "#323232"
   },
   {
     "id": "adobe",
@@ -195,7 +258,10 @@
     "label": "Adobe Light",
     "filename": "adobe-light.json",
     "category": "bigtech",
-    "primary": "#FF0000"
+    "primary": "#FF0000",
+    "secondary": "#EB1000",
+    "accent": "#323232",
+    "background": "#FFFFFF"
   },
   {
     "id": "ibm",
@@ -204,7 +270,10 @@
     "label": "IBM Dark",
     "filename": "ibm-dark.json",
     "category": "bigtech",
-    "primary": "#0F62FE"
+    "primary": "#0F62FE",
+    "secondary": "#4589FF",
+    "accent": "#78A9FF",
+    "background": "#262626"
   },
   {
     "id": "ibm",
@@ -213,7 +282,10 @@
     "label": "IBM Light",
     "filename": "ibm-light.json",
     "category": "bigtech",
-    "primary": "#0F62FE"
+    "primary": "#0F62FE",
+    "secondary": "#4589FF",
+    "accent": "#78A9FF",
+    "background": "#FFFFFF"
   },
   {
     "id": "openai",
@@ -222,7 +294,10 @@
     "label": "OpenAI Dark",
     "filename": "openai-dark.json",
     "category": "startups",
-    "primary": "#10A37F"
+    "primary": "#10A37F",
+    "secondary": "#1A7F64",
+    "accent": "#3B82F6",
+    "background": "#212121"
   },
   {
     "id": "openai",
@@ -231,7 +306,10 @@
     "label": "OpenAI Light",
     "filename": "openai-light.json",
     "category": "startups",
-    "primary": "#10A37F"
+    "primary": "#10A37F",
+    "secondary": "#1A7F64",
+    "accent": "#3B82F6",
+    "background": "#FFFFFF"
   },
   {
     "id": "anthropic",
@@ -240,7 +318,10 @@
     "label": "Anthropic Dark",
     "filename": "anthropic-dark.json",
     "category": "startups",
-    "primary": "#D97757"
+    "primary": "#D97757",
+    "secondary": "#E8927A",
+    "accent": "#7BA3C9",
+    "background": "#262422"
   },
   {
     "id": "anthropic",
@@ -249,7 +330,10 @@
     "label": "Anthropic Light",
     "filename": "anthropic-light.json",
     "category": "startups",
-    "primary": "#D97757"
+    "primary": "#D97757",
+    "secondary": "#E8927A",
+    "accent": "#7BA3C9",
+    "background": "#FAF8F5"
   },
   {
     "id": "perplexity",
@@ -258,7 +342,10 @@
     "label": "Perplexity Dark",
     "filename": "perplexity-dark.json",
     "category": "startups",
-    "primary": "#20B8CD"
+    "primary": "#20B8CD",
+    "secondary": "#1A9AAA",
+    "accent": "#6EE7F0",
+    "background": "#252540"
   },
   {
     "id": "perplexity",
@@ -267,7 +354,10 @@
     "label": "Perplexity Light",
     "filename": "perplexity-light.json",
     "category": "startups",
-    "primary": "#20B8CD"
+    "primary": "#20B8CD",
+    "secondary": "#1A9AAA",
+    "accent": "#6EE7F0",
+    "background": "#FFFFFF"
   },
   {
     "id": "cursor",
@@ -276,7 +366,10 @@
     "label": "Cursor Dark",
     "filename": "cursor-dark.json",
     "category": "startups",
-    "primary": "#00D8FF"
+    "primary": "#00D8FF",
+    "secondary": "#7C3AED",
+    "accent": "#A78BFA",
+    "background": "#1A1A1A"
   },
   {
     "id": "cursor",
@@ -285,7 +378,10 @@
     "label": "Cursor Light",
     "filename": "cursor-light.json",
     "category": "startups",
-    "primary": "#00D8FF"
+    "primary": "#00D8FF",
+    "secondary": "#7C3AED",
+    "accent": "#A78BFA",
+    "background": "#FFFFFF"
   },
   {
     "id": "mistral",
@@ -294,7 +390,10 @@
     "label": "Mistral Dark",
     "filename": "mistral-dark.json",
     "category": "startups",
-    "primary": "#FF7000"
+    "primary": "#FF7000",
+    "secondary": "#FF9A3C",
+    "accent": "#FFD699",
+    "background": "#2A2A2A"
   },
   {
     "id": "mistral",
@@ -303,7 +402,10 @@
     "label": "Mistral Light",
     "filename": "mistral-light.json",
     "category": "startups",
-    "primary": "#FF7000"
+    "primary": "#FF7000",
+    "secondary": "#FF9A3C",
+    "accent": "#FFD699",
+    "background": "#FFFFFF"
   },
   {
     "id": "cohere",
@@ -312,7 +414,10 @@
     "label": "Cohere Dark",
     "filename": "cohere-dark.json",
     "category": "startups",
-    "primary": "#39594D"
+    "primary": "#39594D",
+    "secondary": "#4A7A68",
+    "accent": "#7CB89A",
+    "background": "#2A312F"
   },
   {
     "id": "cohere",
@@ -321,7 +426,10 @@
     "label": "Cohere Light",
     "filename": "cohere-light.json",
     "category": "startups",
-    "primary": "#39594D"
+    "primary": "#39594D",
+    "secondary": "#4A7A68",
+    "accent": "#7CB89A",
+    "background": "#FFFFFF"
   },
   {
     "id": "stability",
@@ -330,7 +438,10 @@
     "label": "Stability AI Dark",
     "filename": "stability-dark.json",
     "category": "startups",
-    "primary": "#A855F7"
+    "primary": "#A855F7",
+    "secondary": "#7C3AED",
+    "accent": "#C084FC",
+    "background": "#1C1C24"
   },
   {
     "id": "stability",
@@ -339,7 +450,10 @@
     "label": "Stability AI Light",
     "filename": "stability-light.json",
     "category": "startups",
-    "primary": "#A855F7"
+    "primary": "#A855F7",
+    "secondary": "#7C3AED",
+    "accent": "#C084FC",
+    "background": "#FFFFFF"
   },
   {
     "id": "huggingface",
@@ -348,7 +462,10 @@
     "label": "Hugging Face Dark",
     "filename": "huggingface-dark.json",
     "category": "startups",
-    "primary": "#FFD21E"
+    "primary": "#FFD21E",
+    "secondary": "#FF9D00",
+    "accent": "#3B82F6",
+    "background": "#2A2A30"
   },
   {
     "id": "huggingface",
@@ -357,7 +474,10 @@
     "label": "Hugging Face Light",
     "filename": "huggingface-light.json",
     "category": "startups",
-    "primary": "#FFD21E"
+    "primary": "#FFD21E",
+    "secondary": "#FF9D00",
+    "accent": "#3B82F6",
+    "background": "#FFFFFF"
   },
   {
     "id": "replicate",
@@ -366,7 +486,10 @@
     "label": "Replicate Dark",
     "filename": "replicate-dark.json",
     "category": "startups",
-    "primary": "#000000"
+    "primary": "#000000",
+    "secondary": "#6366F1",
+    "accent": "#818CF8",
+    "background": "#1A1A1A"
   },
   {
     "id": "replicate",
@@ -375,7 +498,10 @@
     "label": "Replicate Light",
     "filename": "replicate-light.json",
     "category": "startups",
-    "primary": "#000000"
+    "primary": "#000000",
+    "secondary": "#6366F1",
+    "accent": "#818CF8",
+    "background": "#FFFFFF"
   },
   {
     "id": "vercel",
@@ -384,7 +510,10 @@
     "label": "Vercel Dark",
     "filename": "vercel-dark.json",
     "category": "startups",
-    "primary": "#000000"
+    "primary": "#000000",
+    "secondary": "#0070F3",
+    "accent": "#7928CA",
+    "background": "#0A0A0A"
   },
   {
     "id": "vercel",
@@ -393,7 +522,10 @@
     "label": "Vercel Light",
     "filename": "vercel-light.json",
     "category": "startups",
-    "primary": "#000000"
+    "primary": "#000000",
+    "secondary": "#0070F3",
+    "accent": "#7928CA",
+    "background": "#FFFFFF"
   },
   {
     "id": "linear",
@@ -402,7 +534,10 @@
     "label": "Linear Dark",
     "filename": "linear-dark.json",
     "category": "startups",
-    "primary": "#5E6AD2"
+    "primary": "#5E6AD2",
+    "secondary": "#8B8FFF",
+    "accent": "#B4B8FF",
+    "background": "#1E1E24"
   },
   {
     "id": "linear",
@@ -411,7 +546,10 @@
     "label": "Linear Light",
     "filename": "linear-light.json",
     "category": "startups",
-    "primary": "#5E6AD2"
+    "primary": "#5E6AD2",
+    "secondary": "#8B8FFF",
+    "accent": "#B4B8FF",
+    "background": "#FFFFFF"
   },
   {
     "id": "figma",
@@ -420,7 +558,10 @@
     "label": "Figma Dark",
     "filename": "figma-dark.json",
     "category": "startups",
-    "primary": "#A259FF"
+    "primary": "#A259FF",
+    "secondary": "#0ACF83",
+    "accent": "#FF7262",
+    "background": "#2C2C2C"
   },
   {
     "id": "figma",
@@ -429,6 +570,9 @@
     "label": "Figma Light",
     "filename": "figma-light.json",
     "category": "startups",
-    "primary": "#A259FF"
+    "primary": "#A259FF",
+    "secondary": "#0ACF83",
+    "accent": "#FF7262",
+    "background": "#FFFFFF"
   }
 ]

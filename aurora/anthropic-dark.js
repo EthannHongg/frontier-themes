@@ -1,4 +1,4 @@
-/* Aurora background — Anthropic dark — Brand Themes extension */
+/* Aurora background — Anthropic dark — Frontier Themes extension */
 (function () {
   const CONFIG = {
     opacity: 0.6,

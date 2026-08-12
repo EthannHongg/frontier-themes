@@ -1,4 +1,4 @@
-/* Aurora background — Meta dark — Brand Themes extension */
+/* Aurora background — Meta dark — Frontier Themes extension */
 (function () {
   const CONFIG = {
     opacity: 0.6,

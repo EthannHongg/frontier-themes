@@ -1,4 +1,4 @@
-/* Aurora background — Cursor light — Brand Themes extension */
+/* Aurora background — Cursor light — Frontier Themes extension */
 (function () {
   const CONFIG = {
     opacity: 0.45,

@@ -1,4 +1,4 @@
-/* Aurora background — Hugging Face dark — Brand Themes extension */
+/* Aurora background — Hugging Face dark — Frontier Themes extension */
 (function () {
   const CONFIG = {
     opacity: 0.6,

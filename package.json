@@ -1,18 +1,18 @@
 {
-	"name": "brand-themes",
-	"displayName": "Brand Themes",
-	"description": "48 editor themes inspired by top tech companies and AI startups, with optional brand-matched aurora backgrounds.",
-	"version": "1.0.0",
-	"publisher": "brand-themes",
+	"name": "frontier-themes",
+	"displayName": "Frontier Themes",
+	"description": "48 editor themes inspired by top tech companies and AI startups, with live preview picker and optional aurora backgrounds.",
+	"version": "1.1.0",
+	"publisher": "frontier-themes",
 	"license": "MIT",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/EthannHongg/brand-themes.git"
+		"url": "https://github.com/EthannHongg/frontier-themes.git"
 	},
 	"bugs": {
-		"url": "https://github.com/EthannHongg/brand-themes/issues"
+		"url": "https://github.com/EthannHongg/frontier-themes/issues"
 	},
-	"homepage": "https://github.com/EthannHongg/brand-themes#readme",
+	"homepage": "https://github.com/EthannHongg/frontier-themes#readme",
 	"engines": {
 		"vscode": "^1.80.0"
 	},
@@ -283,53 +283,60 @@
 		],
 		"commands": [
 			{
-				"command": "brandThemes.pickTheme",
-				"title": "Brand Themes: Pick Theme",
+				"command": "frontierThemes.pickTheme",
+				"title": "Frontier Themes: Pick Theme",
 				"icon": "$(symbol-color)"
 			},
 			{
-				"command": "brandThemes.pickThemeByCategory",
-				"title": "Brand Themes: Pick by Category"
+				"command": "frontierThemes.pickThemeByCategory",
+				"title": "Frontier Themes: Pick by Category"
 			},
 			{
-				"command": "brandThemes.toggleAurora",
-				"title": "Brand Themes: Toggle Aurora Background",
+				"command": "frontierThemes.toggleAurora",
+				"title": "Frontier Themes: Toggle Aurora Background",
 				"icon": "$(sparkle)"
 			},
 			{
-				"command": "brandThemes.enableAurora",
-				"title": "Brand Themes: Enable Aurora Background"
+				"command": "frontierThemes.enableAurora",
+				"title": "Frontier Themes: Enable Aurora Background"
 			},
 			{
-				"command": "brandThemes.disableAurora",
-				"title": "Brand Themes: Disable Aurora Background"
+				"command": "frontierThemes.disableAurora",
+				"title": "Frontier Themes: Disable Aurora Background"
+			},
+			{
+				"command": "frontierThemes.installAuroraHelper",
+				"title": "Frontier Themes: Install Aurora Helper Extension"
 			}
 		],
 		"menus": {
 			"commandPalette": [
 				{
-					"command": "brandThemes.pickTheme"
+					"command": "frontierThemes.pickTheme"
 				},
 				{
-					"command": "brandThemes.pickThemeByCategory"
+					"command": "frontierThemes.pickThemeByCategory"
 				},
 				{
-					"command": "brandThemes.toggleAurora"
+					"command": "frontierThemes.toggleAurora"
+				},
+				{
+					"command": "frontierThemes.installAuroraHelper"
 				}
 			]
 		},
 		"configuration": {
-			"title": "Brand Themes",
+			"title": "Frontier Themes",
 			"properties": {
-				"brandThemes.aurora.enabled": {
+				"frontierThemes.aurora.enabled": {
 					"type": "boolean",
 					"default": false,
-					"description": "Enable brand-matched animated aurora background (requires Custom CSS and JS Loader)."
+					"description": "Enable brand-matched animated aurora background (requires a CSS/JS injection helper extension)."
 				},
-				"brandThemes.showStatusBarPicker": {
+				"frontierThemes.showStatusBarPicker": {
 					"type": "boolean",
 					"default": true,
-					"description": "Show the theme picker in the status bar."
+					"description": "Show the theme picker and aurora toggle in the status bar."
 				}
 			}
 		}

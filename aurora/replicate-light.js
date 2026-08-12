@@ -1,4 +1,4 @@
-/* Aurora background — Replicate light — Brand Themes extension */
+/* Aurora background — Replicate light — Frontier Themes extension */
 (function () {
   const CONFIG = {
     opacity: 0.45,

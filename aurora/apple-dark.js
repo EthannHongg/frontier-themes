@@ -1,4 +1,4 @@
-/* Aurora background — Apple dark — Brand Themes extension */
+/* Aurora background — Apple dark — Frontier Themes extension */
 (function () {
   const CONFIG = {
     opacity: 0.6,

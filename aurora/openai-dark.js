@@ -1,4 +1,4 @@
-/* Aurora background — OpenAI dark — Brand Themes extension */
+/* Aurora background — OpenAI dark — Frontier Themes extension */
 (function () {
   const CONFIG = {
     opacity: 0.6,

@@ -1,4 +1,4 @@
-/* Aurora background — Tesla light — Brand Themes extension */
+/* Aurora background — Tesla light — Frontier Themes extension */
 (function () {
   const CONFIG = {
     opacity: 0.45,

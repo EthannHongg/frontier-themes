@@ -1,4 +1,4 @@
-/* Aurora background — Salesforce dark — Brand Themes extension */
+/* Aurora background — Salesforce dark — Frontier Themes extension */
 (function () {
   const CONFIG = {
     opacity: 0.6,

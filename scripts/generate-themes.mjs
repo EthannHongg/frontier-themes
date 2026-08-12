@@ -332,6 +332,9 @@ for (const brand of allBrands) {
       filename,
       category: brands.bigtech.some((b) => b.id === brand.id) ? 'bigtech' : 'startups',
       primary: brand.primary,
+      secondary: brand.secondary,
+      accent: brand.accent,
+      background: brand[mode].editor,
     });
   }
 }

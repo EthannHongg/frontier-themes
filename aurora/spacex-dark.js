@@ -1,4 +1,4 @@
-/* Aurora background — SpaceX dark — Brand Themes extension */
+/* Aurora background — SpaceX dark — Frontier Themes extension */
 (function () {
   const CONFIG = {
     opacity: 0.6,

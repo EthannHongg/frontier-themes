@@ -1,4 +1,4 @@
-/* Aurora background — Perplexity dark — Brand Themes extension */
+/* Aurora background — Perplexity dark — Frontier Themes extension */
 (function () {
   const CONFIG = {
     opacity: 0.6,
