@@ -1,13 +1,30 @@
 const vscode = require('vscode');
 const path = require('path');
 const fs = require('fs');
-const https = require('https');
 
 const AURORA_MARKER = 'frontier-themes-aurora';
-const CUSTOM_CSS_VSIX_URL =
-  'https://marketplace.visualstudio.com/_apis/public/gallery/publishers/be5invis/vsextensions/vscode-custom-css/latest/vspackage';
 
 /** @typedef {'custom-css-loader' | 'custom-ui-style'} AuroraBackendId */
+
+/** @type {Record<AuroraBackendId, { extensionIds: string[], setting: string, label: string, marketplaceId: string, inCursorMarketplace: boolean, inVsCodeMarketplace: boolean }>} */
+const HELPERS = {
+  'custom-ui-style': {
+    extensionIds: ['subframe7536.custom-ui-style'],
+    setting: 'custom-ui-style.external.imports',
+    label: 'Custom UI Style',
+    marketplaceId: 'subframe7536.custom-ui-style',
+    inCursorMarketplace: true,
+    inVsCodeMarketplace: true,
+  },
+  'custom-css-loader': {
+    extensionIds: ['be5invis.vscode-custom-css', 's-h-a-d-o-w.vscode-custom-css'],
+    setting: 'vscode_custom_css.imports',
+    label: 'Custom CSS and JS Loader',
+    marketplaceId: 'be5invis.vscode-custom-css',
+    inCursorMarketplace: false,
+    inVsCodeMarketplace: true,
+  },
+};
 
 /**
  * @param {string} filePath
@@ -40,16 +57,29 @@ function hasExtension(extensionId) {
  * @returns {AuroraBackendId | undefined}
  */
 function detectAuroraBackend() {
-  if (
-    hasExtension('be5invis.vscode-custom-css') ||
-    hasExtension('s-h-a-d-o-w.vscode-custom-css')
-  ) {
-    return 'custom-css-loader';
-  }
-  if (hasExtension('subframe7536.custom-ui-style')) {
-    return 'custom-ui-style';
+  for (const backendId of /** @type {AuroraBackendId[]} */ (Object.keys(HELPERS))) {
+    const helper = HELPERS[backendId];
+    if (helper.extensionIds.some((id) => hasExtension(id))) {
+      return backendId;
+    }
   }
   return undefined;
+}
+
+/**
+ * @returns {AuroraBackendId}
+ */
+function getRecommendedHelper() {
+  return isCursor() ? 'custom-ui-style' : 'custom-css-loader';
+}
+
+/**
+ * @param {AuroraBackendId} backendId
+ * @returns {boolean}
+ */
+function isHelperAvailableInEditor(backendId) {
+  const helper = HELPERS[backendId];
+  return isCursor() ? helper.inCursorMarketplace : helper.inVsCodeMarketplace;
 }
 
 /**
@@ -177,138 +207,126 @@ async function enableAuroraBackend(backendId) {
 }
 
 /**
- * @param {string} url
- * @param {string} destination
+ * @param {AuroraBackendId} backendId
  * @returns {Promise<void>}
  */
-function downloadFile(url, destination) {
-  return new Promise((resolve, reject) => {
-    const file = fs.createWriteStream(destination);
-    const request = (targetUrl) => {
-      https
-        .get(targetUrl, (response) => {
-          if (response.statusCode && response.statusCode >= 300 && response.statusCode < 400 && response.headers.location) {
-            request(response.headers.location);
-            return;
-          }
-          if (response.statusCode !== 200) {
-            reject(new Error(`Download failed (${response.statusCode})`));
-            return;
-          }
-          response.pipe(file);
-          file.on('finish', () => file.close(() => resolve()));
-        })
-        .on('error', reject);
-    };
-    request(url);
-  });
-}
-
-/**
- * @param {vscode.ExtensionContext} context
- * @returns {Promise<boolean>}
- */
-async function installCustomCssLoaderVsix(context) {
-  const storageDir = context.globalStorageUri.fsPath;
-  fs.mkdirSync(storageDir, { recursive: true });
-  const vsixPath = path.join(storageDir, 'vscode-custom-css.vsix');
-
-  await vscode.window.withProgress(
-    {
-      location: vscode.ProgressLocation.Notification,
-      title: 'Downloading Custom CSS and JS Loader…',
-      cancellable: false,
-    },
-    async () => {
-      await downloadFile(CUSTOM_CSS_VSIX_URL, vsixPath);
-      await vscode.commands.executeCommand(
-        'workbench.extensions.installExtension',
-        vscode.Uri.file(vsixPath)
-      );
-    }
-  );
-
-  return (
-    hasExtension('be5invis.vscode-custom-css') || hasExtension('s-h-a-d-o-w.vscode-custom-css')
-  );
-}
-
-/**
- * @param {vscode.ExtensionContext} context
- * @returns {Promise<boolean>}
- */
-async function installAuroraHelperExtension(context) {
-  if (isCursor()) {
-    return installCustomCssLoaderVsix(context);
-  }
-
+async function openHelperInMarketplace(backendId) {
+  const helper = HELPERS[backendId];
   try {
     await vscode.commands.executeCommand(
       'workbench.extensions.installExtension',
-      'be5invis.vscode-custom-css'
+      helper.marketplaceId
     );
-    return hasExtension('be5invis.vscode-custom-css');
   } catch {
-    return installCustomCssLoaderVsix(context);
+    await vscode.commands.executeCommand('workbench.extensions.search', `@id:${helper.marketplaceId}`);
   }
 }
 
-/**
- * @param {vscode.ExtensionContext} context
- * @returns {Promise<boolean>}
- */
-async function promptInstallAuroraHelper(context) {
-  const editorName = isCursor() ? 'Cursor' : 'VS Code';
-  const choice = await vscode.window.showInformationMessage(
-    `Aurora needs a helper extension to inject the live background into ${editorName}. ` +
-      'Custom CSS and JS Loader is not in the Cursor marketplace — we can install it from a VSIX automatically.',
-    'Install Helper',
-    'Manual Steps',
-    'Cancel'
-  );
+function getAuroraSetupGuide() {
+  const editor = isCursor() ? 'Cursor' : 'VS Code';
+  const recommended = HELPERS[getRecommendedHelper()];
 
-  if (choice === 'Manual Steps') {
-    const doc = [
-      '# Aurora setup in Cursor',
-      '',
-      '1. Install **Custom CSS and JS Loader** from a VSIX:',
-      '   - Command Palette → **Extensions: Install from VSIX**',
-      '   - Or run: `cursor --install-extension <path-to.vsix>`',
-      '   - VSIX: https://marketplace.visualstudio.com/items?itemName=be5invis.vscode-custom-css',
-      '',
-      '2. Command Palette → **Enable Custom CSS and JS** (admin on Windows)',
-      '',
-      '3. Toggle **Aurora On** in the status bar again',
-      '',
-      '**Alternative:** Install **Custom UI Style** (`subframe7536.custom-ui-style`) from the marketplace, then enable Aurora.',
-    ].join('\n');
-    const docUri = vscode.Uri.parse(
-      `data:text/markdown;charset=utf-8,${encodeURIComponent(doc)}`
+  return [
+    '# Aurora setup',
+    '',
+    '## Why is a helper extension required?',
+    '',
+    `${editor} does not expose any official API for animated editor backgrounds.`,
+    'Frontier Themes only ships color theme JSON — aurora is a separate WebGL script that must',
+    'be injected into the editor UI by a third-party extension that patches workbench files.',
+    '',
+    '**Frontier Themes never downloads or installs extensions for you.**',
+    'Install a helper yourself from the Extensions panel, then toggle Aurora again.',
+    '',
+    '## Recommended helper',
+    '',
+    `**${recommended.label}** (\`${recommended.marketplaceId}\`)`,
+    '',
+    isCursor()
+      ? '- Listed in the **Cursor** Extensions marketplace.'
+      : '- Listed in the **VS Code** Extensions marketplace.',
+    '',
+    '## Steps',
+    '',
+    `1. Extensions → search \`${recommended.marketplaceId}\` → Install`,
+    '2. Toggle **Aurora On** in the status bar (Frontier Themes wires the script path into settings)',
+    recommended.label === 'Custom UI Style'
+      ? '3. Command Palette → **Custom UI Style: Reload**'
+      : '3. Command Palette → **Enable Custom CSS and JS** (administrator on Windows)',
+    '4. Reload the window when prompted',
+    '',
+    '## Cursor note',
+    '',
+    'Custom CSS and JS Loader is **not** in Cursor\'s marketplace. Use Custom UI Style instead.',
+    '',
+    '## Limitations',
+    '',
+    '- Patches can break after editor updates — re-run the helper reload/enable command.',
+    '- You may see a "corrupt installation" warning; that is expected with UI injectors.',
+    '- Aurora is optional — all 48 color themes work without it.',
+  ].join('\n');
+}
+
+/**
+ * Shows setup guidance. Does not download or sideload anything.
+ * @returns {Promise<boolean>} true if a helper extension is now installed
+ */
+async function promptAuroraSetup() {
+  const recommendedId = getRecommendedHelper();
+  const recommended = HELPERS[recommendedId];
+  const editorName = isCursor() ? 'Cursor' : 'VS Code';
+
+  if (!isHelperAvailableInEditor(recommendedId)) {
+    const alt = HELPERS['custom-ui-style'];
+    const choice = await vscode.window.showWarningMessage(
+      `Aurora cannot run natively in ${editorName}. Install ${alt.label} from Extensions (available in Cursor), then toggle Aurora again.`,
+      'Open Extensions',
+      'Setup Guide',
+      'Cancel'
     );
-    await vscode.commands.executeCommand('markdown.showPreview', docUri);
+    if (choice === 'Open Extensions') await openHelperInMarketplace('custom-ui-style');
+    if (choice === 'Setup Guide') {
+      await vscode.commands.executeCommand(
+        'markdown.showPreview',
+        vscode.Uri.parse(`data:text/markdown;charset=utf-8,${encodeURIComponent(getAuroraSetupGuide())}`)
+      );
+    }
     return false;
   }
 
-  if (choice === 'Install Helper') {
-    try {
-      return await installAuroraHelperExtension(context);
-    } catch (err) {
-      vscode.window.showErrorMessage(`Install failed: ${err.message}`);
-      return false;
-    }
+  const choice = await vscode.window.showInformationMessage(
+    `Aurora needs ${recommended.label} (${recommended.marketplaceId}). ` +
+      `${editorName} has no built-in API for live backgrounds — install the helper from Extensions, then toggle Aurora again.`,
+    'Open Extensions',
+    'Setup Guide',
+    'Cancel'
+  );
+
+  if (choice === 'Open Extensions') {
+    await openHelperInMarketplace(recommendedId);
   }
 
-  return false;
+  if (choice === 'Setup Guide') {
+    await vscode.commands.executeCommand(
+      'markdown.showPreview',
+      vscode.Uri.parse(`data:text/markdown;charset=utf-8,${encodeURIComponent(getAuroraSetupGuide())}`)
+    );
+  }
+
+  return Boolean(detectAuroraBackend());
 }
 
 module.exports = {
   AURORA_MARKER,
   detectAuroraBackend,
+  getRecommendedHelper,
   applyAuroraImport,
   removeAuroraImport,
   reloadAuroraBackend,
   enableAuroraBackend,
-  promptInstallAuroraHelper,
+  promptAuroraSetup,
+  openHelperInMarketplace,
+  getAuroraSetupGuide,
   isCursor,
   hasExtension,
 };

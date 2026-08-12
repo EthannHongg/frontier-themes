@@ -2,7 +2,7 @@
 	"name": "frontier-themes",
 	"displayName": "Frontier Themes",
 	"description": "48 editor themes inspired by top tech companies and AI startups, with live preview picker and optional aurora backgrounds.",
-	"version": "1.1.0",
+	"version": "1.1.1",
 	"publisher": "frontier-themes",
 	"license": "MIT",
 	"repository": {
@@ -305,8 +305,12 @@
 				"title": "Frontier Themes: Disable Aurora Background"
 			},
 			{
-				"command": "frontierThemes.installAuroraHelper",
-				"title": "Frontier Themes: Install Aurora Helper Extension"
+				"command": "frontierThemes.setupAurora",
+				"title": "Frontier Themes: Aurora Setup Guide"
+			},
+			{
+				"command": "frontierThemes.showAuroraGuide",
+				"title": "Frontier Themes: Why Aurora Needs a Helper"
 			}
 		],
 		"menus": {
@@ -321,7 +325,10 @@
 					"command": "frontierThemes.toggleAurora"
 				},
 				{
-					"command": "frontierThemes.installAuroraHelper"
+					"command": "frontierThemes.setupAurora"
+				},
+				{
+					"command": "frontierThemes.showAuroraGuide"
 				}
 			]
 		},
@@ -331,7 +338,7 @@
 				"frontierThemes.aurora.enabled": {
 					"type": "boolean",
 					"default": false,
-					"description": "Enable brand-matched animated aurora background (requires a CSS/JS injection helper extension)."
+					"description": "Enable brand-matched aurora background. Requires you to install Custom UI Style (Cursor) or Custom CSS and JS Loader (VS Code) separately."
 				},
 				"frontierThemes.showStatusBarPicker": {
 					"type": "boolean",

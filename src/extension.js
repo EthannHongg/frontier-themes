@@ -7,7 +7,8 @@ const {
   removeAuroraImport,
   reloadAuroraBackend,
   enableAuroraBackend,
-  promptInstallAuroraHelper,
+  promptAuroraSetup,
+  getAuroraSetupGuide,
 } = require('./auroraBackends');
 
 /** @type {vscode.StatusBarItem | undefined} */
@@ -245,10 +246,9 @@ async function setAuroraEnabled(enabled) {
 
   let backend = detectAuroraBackend();
   if (enabled && !backend) {
-    if (!extensionContext) return;
-    const installed = await promptInstallAuroraHelper(extensionContext);
+    await promptAuroraSetup();
     backend = detectAuroraBackend();
-    if (!installed && !backend) return;
+    if (!backend) return;
   }
 
   await vscode.workspace
@@ -346,10 +346,15 @@ function activate(context) {
     vscode.commands.registerCommand('frontierThemes.toggleAurora', toggleAurora),
     vscode.commands.registerCommand('frontierThemes.enableAurora', () => setAuroraEnabled(true)),
     vscode.commands.registerCommand('frontierThemes.disableAurora', () => setAuroraEnabled(false)),
-    vscode.commands.registerCommand('frontierThemes.installAuroraHelper', () => {
-      if (extensionContext) return promptInstallAuroraHelper(extensionContext);
-      return undefined;
-    }),
+    vscode.commands.registerCommand('frontierThemes.setupAurora', () => promptAuroraSetup()),
+    vscode.commands.registerCommand('frontierThemes.showAuroraGuide', () =>
+      vscode.commands.executeCommand(
+        'markdown.showPreview',
+        vscode.Uri.parse(
+          `data:text/markdown;charset=utf-8,${encodeURIComponent(getAuroraSetupGuide())}`
+        )
+      )
+    ),
     vscode.workspace.onDidChangeConfiguration((event) => {
       if (event.affectsConfiguration('workbench.colorTheme')) {
         updateThemeStatusBar();

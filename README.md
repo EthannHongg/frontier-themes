@@ -96,34 +96,42 @@ While the picker is open:
 - **Enter** — apply the selection
 - **Esc** — cancel and **revert** to your previous theme
 
-### Aurora backgrounds (optional)
+### Aurora backgrounds (optional, advanced)
 
 A slow, iridescent animated background behind your editor — adapted from [AuroraBg](https://github.com/crlang44/AuroraBg) with per-brand palette tuning.
 
 Toggle via **`$(sparkle) Aurora On/Off`** in the status bar.
 
-#### Cursor / helper extension
+#### Why isn't this built in?
 
-Aurora injects a small WebGL script into the editor UI. That requires a **helper extension** — the classic one is [Custom CSS and JS Loader](https://marketplace.visualstudio.com/items?itemName=be5invis.vscode-custom-css), which is **not listed in Cursor's marketplace**.
+VS Code and Cursor only let theme extensions set **colors** (JSON tokens). Aurora is a **WebGL animation** that requires injecting JavaScript into the editor UI. There is [no official API](https://forum.cursor.com/t/is-it-possible-to-customize-cursor-ui-element-styles/52341) for that — Cursor staff point users to third-party injectors.
 
-**In Cursor (recommended flow):**
+**Frontier Themes does not download or install anything for you.** It only writes the aurora script path into your helper extension's settings once you have installed one yourself.
 
-1. Toggle **Aurora On** in the status bar
-2. Click **Install Helper** — Frontier Themes downloads and installs the VSIX automatically
-3. Command Palette → **Enable Custom CSS and JS** (administrator on Windows)
-4. Reload when prompted
+#### Which helper to use
 
-**Manual install:**
+| Editor | Helper | In marketplace? |
+|--------|--------|-----------------|
+| **Cursor** | [Custom UI Style](https://marketplace.cursorapi.com/items/?itemName=subframe7536.custom-ui-style) (`subframe7536.custom-ui-style`) | Yes |
+| **VS Code** | [Custom CSS and JS Loader](https://marketplace.visualstudio.com/items?itemName=be5invis.vscode-custom-css) (`be5invis.vscode-custom-css`) | Yes |
+| Cursor | Custom CSS and JS Loader | **No** — not listed in Cursor's marketplace |
 
-```bash
-cursor --install-extension path/to/vscode-custom-css.vsix
-```
+#### Setup (Cursor)
 
-Download the VSIX from the [Marketplace page](https://marketplace.visualstudio.com/items?itemName=be5invis.vscode-custom-css).
+1. Extensions → search **Custom UI Style** → Install
+2. Status bar → **Aurora On**
+3. Command Palette → **Custom UI Style: Reload**
+4. Re-run reload after Cursor updates (injectors patch internal files)
 
-**Alternative:** Install [Custom UI Style](https://marketplace.visualstudio.com/items?itemName=subframe7536.custom-ui-style) — Frontier Themes detects it and wires aurora through `custom-ui-style.external.imports`.
+Optional: set `"custom-ui-style.webview.enable": false` if extension detail panels show CSP errors.
 
-Command Palette → **Frontier Themes: Install Aurora Helper Extension** at any time.
+#### Setup (VS Code)
+
+1. Extensions → **Custom CSS and JS Loader** → Install
+2. Status bar → **Aurora On**
+3. Command Palette → **Enable Custom CSS and JS** → reload
+
+Command Palette → **Frontier Themes: Aurora Setup Guide** for full details.
 
 ## Commands
 
@@ -132,7 +140,7 @@ Command Palette → **Frontier Themes: Install Aurora Helper Extension** at any 
 | `Frontier Themes: Pick Theme` | Open picker with swatches and live preview |
 | `Frontier Themes: Pick by Category` | Big Tech or AI & Startups first |
 | `Frontier Themes: Toggle Aurora Background` | On / off aurora for current theme |
-| `Frontier Themes: Install Aurora Helper Extension` | Install CSS/JS loader (Cursor-friendly) |
+| `Frontier Themes: Aurora Setup Guide` | Open helper install instructions |
 
 ## Settings
 
