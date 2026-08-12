@@ -1,24 +1,11 @@
 const vscode = require('vscode');
 const path = require('path');
 const fs = require('fs');
-const {
-  detectAuroraBackend,
-  applyAuroraImport,
-  removeAuroraImport,
-  reloadAuroraBackend,
-  enableAuroraBackend,
-  promptAuroraSetup,
-  getAuroraSetupGuide,
-} = require('./auroraBackends');
 
 /** @type {vscode.StatusBarItem | undefined} */
 let themeStatusBar;
-/** @type {vscode.StatusBarItem | undefined} */
-let auroraStatusBar;
 /** @type {string | undefined} */
 let extensionPath;
-/** @type {vscode.ExtensionContext | undefined} */
-let extensionContext;
 
 /** @type {import('./themeCatalog.json')} */
 let catalog = [];
@@ -73,67 +60,12 @@ function updateThemeStatusBar() {
   }
 }
 
-function isAuroraExperimentalEnabled() {
-  return vscode.workspace
-    .getConfiguration('frontierThemes')
-    .get('experimental.aurora', false);
-}
-
-function isAuroraEnabled() {
-  return (
-    isAuroraExperimentalEnabled() &&
-    vscode.workspace.getConfiguration('frontierThemes').get('aurora.enabled', false)
-  );
-}
-
-function updateAuroraStatusBar() {
-  if (!auroraStatusBar || !isAuroraExperimentalEnabled()) return;
-  const on = isAuroraEnabled();
-  auroraStatusBar.text = on ? '$(sparkle) Aurora On' : '$(sparkle) Aurora Off';
-  auroraStatusBar.tooltip = on
-    ? 'Aurora background is enabled — click to turn off'
-    : 'Click to enable brand-matched aurora background';
-  auroraStatusBar.backgroundColor = on
-    ? new vscode.ThemeColor('statusBarItem.prominentBackground')
-    : undefined;
-}
-
-/**
- * @param {import('./themeCatalog.json')[number]} entry
- * @returns {string | undefined}
- */
-function getAuroraScriptPath(entry) {
-  const root = extensionPath;
-  if (!root) return undefined;
-  return path.join(root, 'aurora', `${entry.id}-${entry.mode}.js`);
-}
-
-/**
- * @param {import('./themeCatalog.json')[number]} entry
- * @returns {Promise<void>}
- */
-async function syncAuroraForEntry(entry) {
-  if (!isAuroraExperimentalEnabled()) return;
-  const backend = detectAuroraBackend();
-  if (!backend || !isAuroraEnabled()) return;
-
-  const scriptPath = getAuroraScriptPath(entry);
-  if (!scriptPath || !fs.existsSync(scriptPath)) return;
-
-  await applyAuroraImport(backend, scriptPath, `${entry.id}-${entry.mode}`);
-  await reloadAuroraBackend(backend);
-}
-
 /**
  * @param {string} themeLabel
  * @returns {Promise<void>}
  */
 async function applyTheme(themeLabel) {
   await vscode.workspace.getConfiguration().update('workbench.colorTheme', themeLabel, true);
-  const entry = findCatalogEntry(themeLabel);
-  if (entry && isAuroraEnabled()) {
-    await syncAuroraForEntry(entry);
-  }
   updateThemeStatusBar();
 }
 
@@ -227,13 +159,6 @@ function showThemePickerWithPreview(entries, placeHolder) {
         vscode.workspace
           .getConfiguration()
           .update('workbench.colorTheme', originalTheme, true)
-          .then(() => {
-            const originalEntry = findCatalogEntry(originalTheme);
-            if (originalEntry && isAuroraEnabled()) {
-              return syncAuroraForEntry(originalEntry);
-            }
-            return undefined;
-          })
           .finally(() => updateThemeStatusBar());
       }
       quickPick.dispose();
@@ -242,69 +167,6 @@ function showThemePickerWithPreview(entries, placeHolder) {
 
     quickPick.show();
   });
-}
-
-/**
- * @param {boolean} enabled
- */
-async function setAuroraEnabled(enabled) {
-  if (!isAuroraExperimentalEnabled()) {
-    vscode.window.showInformationMessage(
-      'Aurora is experimental and disabled by default. Set "frontierThemes.experimental.aurora": true in settings to enable it.'
-    );
-    return;
-  }
-
-  const entry = getActiveCatalogEntry();
-  if (enabled && !entry) {
-    vscode.window.showWarningMessage('Select a Frontier theme first, then enable Aurora.');
-    return;
-  }
-
-  let backend = detectAuroraBackend();
-  if (enabled && !backend) {
-    await promptAuroraSetup();
-    backend = detectAuroraBackend();
-    if (!backend) return;
-  }
-
-  await vscode.workspace
-    .getConfiguration('frontierThemes')
-    .update('aurora.enabled', enabled, vscode.ConfigurationTarget.Global);
-
-  if (enabled && entry && backend) {
-    try {
-      const scriptPath = getAuroraScriptPath(entry);
-      if (!scriptPath || !fs.existsSync(scriptPath)) {
-        throw new Error(`Aurora script not found for ${entry.label}`);
-      }
-      await applyAuroraImport(backend, scriptPath, `${entry.id}-${entry.mode}`);
-
-      const enabledBackend = await enableAuroraBackend(backend);
-      const reload = await vscode.window.showInformationMessage(
-        `Aurora enabled for ${entry.label}.${enabledBackend ? '' : ' Run the helper extension enable command if needed.'} Reload now?`,
-        'Reload Helper',
-        'Later'
-      );
-      if (reload === 'Reload Helper') {
-        await reloadAuroraBackend(backend);
-      }
-    } catch (err) {
-      vscode.window.showErrorMessage(`Failed to enable Aurora: ${err.message}`);
-      await vscode.workspace
-        .getConfiguration('frontierThemes')
-        .update('aurora.enabled', false, vscode.ConfigurationTarget.Global);
-    }
-  } else if (!enabled) {
-    await removeAuroraImport(backend);
-    if (backend) await reloadAuroraBackend(backend);
-  }
-
-  updateAuroraStatusBar();
-}
-
-async function toggleAurora() {
-  await setAuroraEnabled(!isAuroraEnabled());
 }
 
 async function pickTheme() {
@@ -335,7 +197,6 @@ async function pickThemeByCategory() {
  * @param {vscode.ExtensionContext} context
  */
 function activate(context) {
-  extensionContext = context;
   extensionPath = context.extension.extensionPath;
   catalog = loadCatalog();
 
@@ -348,55 +209,15 @@ function activate(context) {
     themeStatusBar.command = 'frontierThemes.pickTheme';
     themeStatusBar.show();
     updateThemeStatusBar();
-
-    auroraStatusBar = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, 199);
-    auroraStatusBar.command = 'frontierThemes.toggleAurora';
-    if (isAuroraExperimentalEnabled()) {
-      auroraStatusBar.show();
-      updateAuroraStatusBar();
-    }
   }
 
   context.subscriptions.push(
     themeStatusBar,
-    auroraStatusBar,
     vscode.commands.registerCommand('frontierThemes.pickTheme', pickTheme),
     vscode.commands.registerCommand('frontierThemes.pickThemeByCategory', pickThemeByCategory),
-    vscode.commands.registerCommand('frontierThemes.toggleAurora', toggleAurora),
-    vscode.commands.registerCommand('frontierThemes.enableAurora', () => setAuroraEnabled(true)),
-    vscode.commands.registerCommand('frontierThemes.disableAurora', () => setAuroraEnabled(false)),
-    vscode.commands.registerCommand('frontierThemes.setupAurora', () => promptAuroraSetup()),
-    vscode.commands.registerCommand('frontierThemes.showAuroraGuide', () =>
-      vscode.commands.executeCommand(
-        'markdown.showPreview',
-        vscode.Uri.parse(
-          `data:text/markdown;charset=utf-8,${encodeURIComponent(getAuroraSetupGuide())}`
-        )
-      )
-    ),
     vscode.workspace.onDidChangeConfiguration((event) => {
       if (event.affectsConfiguration('workbench.colorTheme')) {
         updateThemeStatusBar();
-        if (isAuroraEnabled()) {
-          const active = getActiveCatalogEntry();
-          if (active) syncAuroraForEntry(active).catch(() => undefined);
-        }
-      }
-      if (event.affectsConfiguration('frontierThemes.experimental.aurora')) {
-        if (isAuroraExperimentalEnabled()) {
-          auroraStatusBar?.show();
-          updateAuroraStatusBar();
-        } else {
-          auroraStatusBar?.hide();
-          const config = vscode.workspace.getConfiguration('frontierThemes');
-          if (config.get('aurora.enabled', false)) {
-            config.update('aurora.enabled', false, vscode.ConfigurationTarget.Global);
-            removeAuroraImport(detectAuroraBackend()).catch(() => undefined);
-          }
-        }
-      }
-      if (event.affectsConfiguration('frontierThemes.aurora.enabled')) {
-        updateAuroraStatusBar();
       }
     })
   );
@@ -404,7 +225,6 @@ function activate(context) {
 
 function deactivate() {
   themeStatusBar?.dispose();
-  auroraStatusBar?.dispose();
 }
 
 module.exports = { activate, deactivate };

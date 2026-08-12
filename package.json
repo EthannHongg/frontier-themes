@@ -1,8 +1,8 @@
 {
 	"name": "frontier-themes",
 	"displayName": "Frontier Themes",
-	"description": "48 editor themes inspired by top tech companies and AI startups, with live preview picker and optional aurora backgrounds.",
-	"version": "1.2.0",
+	"description": "48 editor themes inspired by top tech companies and AI startups, with live preview picker.",
+	"version": "1.3.0",
 	"publisher": "frontier-themes",
 	"license": "MIT",
 	"repository": {
@@ -26,8 +26,7 @@
 		"light theme",
 		"openai",
 		"anthropic",
-		"google",
-		"aurora"
+		"google"
 	],
 	"icon": "media/icon.png",
 	"galleryBanner": {
@@ -290,27 +289,6 @@
 			{
 				"command": "frontierThemes.pickThemeByCategory",
 				"title": "Frontier Themes: Pick by Category"
-			},
-			{
-				"command": "frontierThemes.toggleAurora",
-				"title": "Frontier Themes: Toggle Aurora Background",
-				"icon": "$(sparkle)"
-			},
-			{
-				"command": "frontierThemes.enableAurora",
-				"title": "Frontier Themes: Enable Aurora Background"
-			},
-			{
-				"command": "frontierThemes.disableAurora",
-				"title": "Frontier Themes: Disable Aurora Background"
-			},
-			{
-				"command": "frontierThemes.setupAurora",
-				"title": "Frontier Themes: Aurora Setup Guide"
-			},
-			{
-				"command": "frontierThemes.showAuroraGuide",
-				"title": "Frontier Themes: Why Aurora Needs a Helper"
 			}
 		],
 		"menus": {
@@ -320,52 +298,22 @@
 				},
 				{
 					"command": "frontierThemes.pickThemeByCategory"
-				},
-				{
-					"command": "frontierThemes.toggleAurora",
-					"when": "config.frontierThemes.experimental.aurora"
-				},
-				{
-					"command": "frontierThemes.enableAurora",
-					"when": "config.frontierThemes.experimental.aurora"
-				},
-				{
-					"command": "frontierThemes.disableAurora",
-					"when": "config.frontierThemes.experimental.aurora"
-				},
-				{
-					"command": "frontierThemes.setupAurora",
-					"when": "config.frontierThemes.experimental.aurora"
-				},
-				{
-					"command": "frontierThemes.showAuroraGuide",
-					"when": "config.frontierThemes.experimental.aurora"
 				}
 			]
 		},
 		"configuration": {
 			"title": "Frontier Themes",
 			"properties": {
-				"frontierThemes.experimental.aurora": {
-					"type": "boolean",
-					"default": false,
-					"markdownDescription": "Experimental: enable aurora background controls. Set to `true` manually in settings.json — not exposed in the UI by default."
-				},
-				"frontierThemes.aurora.enabled": {
-					"type": "boolean",
-					"default": false,
-					"description": "Enable brand-matched aurora background (requires frontierThemes.experimental.aurora and a helper extension)."
-				},
 				"frontierThemes.showStatusBarPicker": {
 					"type": "boolean",
 					"default": true,
-					"description": "Show the theme picker and aurora toggle in the status bar."
+					"description": "Show the theme picker in the status bar."
 				}
 			}
 		}
 	},
 	"scripts": {
-		"generate": "node scripts/generate-themes.mjs && node scripts/generate-aurora.mjs",
+		"generate": "node scripts/generate-themes.mjs",
 		"dev": "node --watch scripts/generate-themes.mjs",
 		"package": "vsce package",
 		"publish": "vsce publish"

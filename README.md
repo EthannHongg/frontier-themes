@@ -16,8 +16,6 @@ Frontier Themes is a collection of **48 color themes** (light + dark) inspired b
 
 Use the **status bar picker** to switch themes quickly, **preview with ↑↓** before applying.
 
-> **Experimental:** Animated aurora backgrounds are disabled by default. See [Aurora backgrounds](#aurora-backgrounds-experimental-off-by-default) below.
-
 > Brand names and colors are inspired by public identities. This project is not affiliated with or endorsed by any company listed.
 
 ## Installation
@@ -38,7 +36,7 @@ cd frontier-themes
 npm install && npm run generate && npm run package
 ```
 
-Then: Extensions → `...` → **Install from VSIX** → select `frontier-themes-1.1.0.vsix`
+Then: Extensions → `...` → **Install from VSIX** → select `frontier-themes-1.3.0.vsix`
 
 Or search **Frontier Themes** on the VS Code Marketplace (after publish).
 
@@ -98,66 +96,17 @@ While the picker is open:
 - **Enter** — apply the selection
 - **Esc** — cancel and **revert** to your previous theme
 
-### Aurora backgrounds (experimental, off by default)
-
-Aurora is **disabled by default**. To try it, add to your `settings.json`:
-
-```json
-{
-  "frontierThemes.experimental.aurora": true
-}
-```
-
-Reload the window — the **Aurora On/Off** status bar control will appear.
-
-Aurora is a slow, iridescent animated background — adapted from [AuroraBg](https://github.com/crlang44/AuroraBg). It requires a third-party helper extension (see setup guide below). **Frontier Themes does not install helpers for you.**
-
-#### Why isn't this built in?
-
-VS Code and Cursor only let theme extensions set **colors** (JSON tokens). Aurora is a **WebGL animation** that requires injecting JavaScript into the editor UI. There is [no official API](https://forum.cursor.com/t/is-it-possible-to-customize-cursor-ui-element-styles/52341) for that — Cursor staff point users to third-party injectors.
-
-**Frontier Themes does not download or install anything for you.** It only writes the aurora script path into your helper extension's settings once you have installed one yourself.
-
-#### Which helper to use
-
-| Editor | Helper | In marketplace? |
-|--------|--------|-----------------|
-| **Cursor** | [Custom UI Style](https://marketplace.cursorapi.com/items/?itemName=subframe7536.custom-ui-style) (`subframe7536.custom-ui-style`) | Yes |
-| **VS Code** | [Custom CSS and JS Loader](https://marketplace.visualstudio.com/items?itemName=be5invis.vscode-custom-css) (`be5invis.vscode-custom-css`) | Yes |
-| Cursor | Custom CSS and JS Loader | **No** — not listed in Cursor's marketplace |
-
-#### Setup (Cursor)
-
-1. Extensions → search **Custom UI Style** → Install
-2. Status bar → **Aurora On**
-3. Command Palette → **Custom UI Style: Reload**
-4. Re-run reload after Cursor updates (injectors patch internal files)
-
-Optional: set `"custom-ui-style.webview.enable": false` if extension detail panels show CSP errors.
-
-#### Setup (VS Code)
-
-1. Extensions → **Custom CSS and JS Loader** → Install
-2. Status bar → **Aurora On**
-3. Command Palette → **Enable Custom CSS and JS** → reload
-
-Command Palette → **Frontier Themes: Aurora Setup Guide** for full details.
-
 ## Commands
 
 | Command | Description |
 |---------|-------------|
 | `Frontier Themes: Pick Theme` | Open picker with swatches and live preview |
 | `Frontier Themes: Pick by Category` | Big Tech or AI & Startups first |
-| `Frontier Themes: Toggle Aurora Background` | On / off aurora (experimental only) |
-| `Frontier Themes: Aurora Setup Guide` | Open helper install instructions |
 
 ## Settings
 
 | Setting | Default | Description |
 |---------|---------|-------------|
-| `frontierThemes.experimental.aurora` | `false` | Enable experimental aurora UI (set manually in settings.json) |
-| `frontierThemes.aurora.enabled` | `false` | Aurora on/off (requires experimental flag) |
 | `frontierThemes.showStatusBarPicker` | `true` | Status bar theme picker |
 
 ## Theme architecture
@@ -193,7 +142,6 @@ Report bugs and suggestions on [GitHub Issues](https://github.com/EthannHongg/fr
 
 ## Credits
 
-- [AuroraBg](https://github.com/crlang44/AuroraBg) — aurora shader approach
 - [Gruvbox Theme](https://github.com/jdinhify/vscode-theme-gruvbox) — README structure inspiration
 - Original OpenAI & Anthropic palettes from the early local theme pack
 
