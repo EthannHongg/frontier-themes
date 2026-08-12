@@ -73,12 +73,21 @@ function updateThemeStatusBar() {
   }
 }
 
+function isAuroraExperimentalEnabled() {
+  return vscode.workspace
+    .getConfiguration('frontierThemes')
+    .get('experimental.aurora', false);
+}
+
 function isAuroraEnabled() {
-  return vscode.workspace.getConfiguration('frontierThemes').get('aurora.enabled', false);
+  return (
+    isAuroraExperimentalEnabled() &&
+    vscode.workspace.getConfiguration('frontierThemes').get('aurora.enabled', false)
+  );
 }
 
 function updateAuroraStatusBar() {
-  if (!auroraStatusBar) return;
+  if (!auroraStatusBar || !isAuroraExperimentalEnabled()) return;
   const on = isAuroraEnabled();
   auroraStatusBar.text = on ? '$(sparkle) Aurora On' : '$(sparkle) Aurora Off';
   auroraStatusBar.tooltip = on
@@ -104,6 +113,7 @@ function getAuroraScriptPath(entry) {
  * @returns {Promise<void>}
  */
 async function syncAuroraForEntry(entry) {
+  if (!isAuroraExperimentalEnabled()) return;
   const backend = detectAuroraBackend();
   if (!backend || !isAuroraEnabled()) return;
 
@@ -238,6 +248,13 @@ function showThemePickerWithPreview(entries, placeHolder) {
  * @param {boolean} enabled
  */
 async function setAuroraEnabled(enabled) {
+  if (!isAuroraExperimentalEnabled()) {
+    vscode.window.showInformationMessage(
+      'Aurora is experimental and disabled by default. Set "frontierThemes.experimental.aurora": true in settings to enable it.'
+    );
+    return;
+  }
+
   const entry = getActiveCatalogEntry();
   if (enabled && !entry) {
     vscode.window.showWarningMessage('Select a Frontier theme first, then enable Aurora.');
@@ -334,8 +351,10 @@ function activate(context) {
 
     auroraStatusBar = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, 199);
     auroraStatusBar.command = 'frontierThemes.toggleAurora';
-    auroraStatusBar.show();
-    updateAuroraStatusBar();
+    if (isAuroraExperimentalEnabled()) {
+      auroraStatusBar.show();
+      updateAuroraStatusBar();
+    }
   }
 
   context.subscriptions.push(
@@ -361,6 +380,19 @@ function activate(context) {
         if (isAuroraEnabled()) {
           const active = getActiveCatalogEntry();
           if (active) syncAuroraForEntry(active).catch(() => undefined);
+        }
+      }
+      if (event.affectsConfiguration('frontierThemes.experimental.aurora')) {
+        if (isAuroraExperimentalEnabled()) {
+          auroraStatusBar?.show();
+          updateAuroraStatusBar();
+        } else {
+          auroraStatusBar?.hide();
+          const config = vscode.workspace.getConfiguration('frontierThemes');
+          if (config.get('aurora.enabled', false)) {
+            config.update('aurora.enabled', false, vscode.ConfigurationTarget.Global);
+            removeAuroraImport(detectAuroraBackend()).catch(() => undefined);
+          }
         }
       }
       if (event.affectsConfiguration('frontierThemes.aurora.enabled')) {

@@ -2,7 +2,7 @@
 	"name": "frontier-themes",
 	"displayName": "Frontier Themes",
 	"description": "48 editor themes inspired by top tech companies and AI startups, with live preview picker and optional aurora backgrounds.",
-	"version": "1.1.1",
+	"version": "1.1.2",
 	"publisher": "frontier-themes",
 	"license": "MIT",
 	"repository": {
@@ -322,23 +322,39 @@
 					"command": "frontierThemes.pickThemeByCategory"
 				},
 				{
-					"command": "frontierThemes.toggleAurora"
+					"command": "frontierThemes.toggleAurora",
+					"when": "config.frontierThemes.experimental.aurora"
 				},
 				{
-					"command": "frontierThemes.setupAurora"
+					"command": "frontierThemes.enableAurora",
+					"when": "config.frontierThemes.experimental.aurora"
 				},
 				{
-					"command": "frontierThemes.showAuroraGuide"
+					"command": "frontierThemes.disableAurora",
+					"when": "config.frontierThemes.experimental.aurora"
+				},
+				{
+					"command": "frontierThemes.setupAurora",
+					"when": "config.frontierThemes.experimental.aurora"
+				},
+				{
+					"command": "frontierThemes.showAuroraGuide",
+					"when": "config.frontierThemes.experimental.aurora"
 				}
 			]
 		},
 		"configuration": {
 			"title": "Frontier Themes",
 			"properties": {
+				"frontierThemes.experimental.aurora": {
+					"type": "boolean",
+					"default": false,
+					"markdownDescription": "Experimental: enable aurora background controls. Set to `true` manually in settings.json — not exposed in the UI by default."
+				},
 				"frontierThemes.aurora.enabled": {
 					"type": "boolean",
 					"default": false,
-					"description": "Enable brand-matched aurora background. Requires you to install Custom UI Style (Cursor) or Custom CSS and JS Loader (VS Code) separately."
+					"description": "Enable brand-matched aurora background (requires frontierThemes.experimental.aurora and a helper extension)."
 				},
 				"frontierThemes.showStatusBarPicker": {
 					"type": "boolean",

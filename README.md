@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  Brand-inspired color themes for VS Code &amp; Cursor — with live preview and optional aurora backgrounds.
+  Brand-inspired color themes for VS Code &amp; Cursor — with live preview picker.
 </p>
 
 <p align="center">
@@ -14,7 +14,9 @@
 
 Frontier Themes is a collection of **48 color themes** (light + dark) inspired by well-known tech companies and AI startups. Each theme includes syntax highlighting, workbench colors, and terminal palettes tuned to that brand.
 
-Use the **status bar picker** to switch themes quickly, **preview with ↑↓** before applying, and optionally enable a **brand-matched aurora** animated background.
+Use the **status bar picker** to switch themes quickly, **preview with ↑↓** before applying.
+
+> **Experimental:** Animated aurora backgrounds are disabled by default. See [Experimental features](#experimental-features) below.
 
 > Brand names and colors are inspired by public identities. This project is not affiliated with or endorsed by any company listed.
 
@@ -96,11 +98,19 @@ While the picker is open:
 - **Enter** — apply the selection
 - **Esc** — cancel and **revert** to your previous theme
 
-### Aurora backgrounds (optional, advanced)
+### Aurora backgrounds (experimental, off by default)
 
-A slow, iridescent animated background behind your editor — adapted from [AuroraBg](https://github.com/crlang44/AuroraBg) with per-brand palette tuning.
+Aurora is **disabled by default**. To try it, add to your `settings.json`:
 
-Toggle via **`$(sparkle) Aurora On/Off`** in the status bar.
+```json
+{
+  "frontierThemes.experimental.aurora": true
+}
+```
+
+Reload the window — the **Aurora On/Off** status bar control will appear.
+
+Aurora is a slow, iridescent animated background — adapted from [AuroraBg](https://github.com/crlang44/AuroraBg). It requires a third-party helper extension (see setup guide below). **Frontier Themes does not install helpers for you.**
 
 #### Why isn't this built in?
 
