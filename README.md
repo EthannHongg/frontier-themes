@@ -18,6 +18,28 @@ Use the **status bar picker** to switch themes quickly, **preview with ↑↓** 
 
 > Brand names and colors are inspired by public identities. This project is not affiliated with or endorsed by any company listed.
 
+## Theme previews
+
+<p align="center">
+  <img src="media/demo/demo_01_anthropic_dark_python.png" alt="Anthropic Dark — Python syntax" width="720">
+  <br><em>Anthropic Dark — Python</em>
+</p>
+
+<p align="center">
+  <img src="media/demo/demo_02_cursor_dark_markdown.png" alt="Cursor Dark — Markdown" width="720">
+  <br><em>Cursor Dark — Markdown</em>
+</p>
+
+<p align="center">
+  <img src="media/demo/demo_03_nvidia_dark_go.png" alt="NVIDIA Dark — Go" width="720">
+  <br><em>NVIDIA Dark — Go</em>
+</p>
+
+<p align="center">
+  <img src="media/demo/demo_04_vercel_dark_split.png" alt="Vercel Dark — split editor" width="720">
+  <br><em>Vercel Dark — split editor</em>
+</p>
+
 ## Installation
 
 ### Marketplace / VSIX
