@@ -1,21 +1,17 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-mkdir -p \
-  "$HOME/.config/Code/User" \
-  "$HOME/.config/Cursor/User" \
-  "$HOME/.local/bin"
+mkdir -p "$HOME/.config/Code/User" "$HOME/.local/bin"
 
-for app_dir in Code Cursor; do
-  mkdir -p "$HOME/.config/$app_dir"
-  cat >"$HOME/.config/$app_dir/argv.json" <<'EOF'
+mkdir -p "$HOME/.config/Code"
+cat >"$HOME/.config/Code/argv.json" <<'EOF'
 {
   "password-store": "basic",
   "enable-crash-reporter": false
 }
 EOF
 
-  cat >"$HOME/.config/$app_dir/User/settings.json" <<'EOF'
+cat >"$HOME/.config/Code/User/settings.json" <<'EOF'
 {
   "security.workspace.trust.enabled": false,
   "window.restoreWindows": "none",
@@ -25,7 +21,6 @@ EOF
   "telemetry.telemetryLevel": "off"
 }
 EOF
-done
 
 cat >"$HOME/.local/bin/ide-env.sh" <<'EOF'
 #!/usr/bin/env bash
@@ -50,22 +45,12 @@ source "$HOME/.local/bin/ide-env.sh"
 exec code "$@" --no-sandbox --disable-gpu --password-store=basic
 EOF
 
-cat >"$HOME/.local/bin/open-cursor" <<'EOF'
-#!/usr/bin/env bash
-set -euo pipefail
-source "$HOME/.local/bin/ide-env.sh"
-exec cursor "$@" --no-sandbox --disable-gpu --password-store=basic --suppress-popups-on-startup
-EOF
-
-chmod +x \
-  "$HOME/.local/bin/ide-env.sh" \
-  "$HOME/.local/bin/open-vscode" \
-  "$HOME/.local/bin/open-cursor"
+chmod +x "$HOME/.local/bin/ide-env.sh" "$HOME/.local/bin/open-vscode"
 
 if ! grep -q 'IDE launch helpers' "$HOME/.bashrc" 2>/dev/null; then
   cat >>"$HOME/.bashrc" <<'EOF'
 
-# IDE launch helpers for Cloud Agent desktops
+# VS Code launch helper for Cloud Agent desktops
 export PATH="$HOME/.local/bin:$PATH"
 EOF
 fi
