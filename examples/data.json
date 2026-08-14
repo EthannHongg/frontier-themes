@@ -19,7 +19,8 @@
       "semanticTokenColors": true,
       "gitlens": true,
       "jupyter": true,
-      "tokenRules": 68
+      "errorLens": true,
+      "tokenRules": 130
   }
   },
   "examples": [

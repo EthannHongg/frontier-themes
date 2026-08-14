@@ -9,9 +9,19 @@ import { getJavaScriptTokenColors } from './tokens/javascript.mjs';
 import { getMarkdownTokenColors } from './tokens/markdown.mjs';
 import { getCssTokenColors } from './tokens/css.mjs';
 import { getHtmlTokenColors } from './tokens/html.mjs';
+import { getShellTokenColors } from './tokens/shell.mjs';
+import { getJsonTokenColors } from './tokens/json.mjs';
+import { getGoTokenColors } from './tokens/go.mjs';
+import { getJavaTokenColors } from './tokens/java.mjs';
+import { getCTokenColors } from './tokens/c.mjs';
+import { getPowerShellTokenColors } from './tokens/powershell.mjs';
+import { getMakefileTokenColors } from './tokens/makefile.mjs';
+import { getRustTokenColors } from './tokens/rust.mjs';
+import { getYamlTokenColors } from './tokens/yaml.mjs';
 import { getSemanticTokenColors } from './semantic-colors.mjs';
 import { getGitLensColors } from './extensions/gitlens.mjs';
 import { getJupyterColors } from './extensions/jupyter.mjs';
+import { getErrorLensColors } from './extensions/errorlens.mjs';
 
 /**
  * Compose a complete VS Code color theme from brand definition + mode.
@@ -26,6 +36,7 @@ export function buildTheme(brand, mode) {
     ...getTerminalColors(palette),
     ...getGitLensColors(palette),
     ...getJupyterColors(palette),
+    ...getErrorLensColors(palette),
   };
 
   const tokenColors = [
@@ -35,6 +46,15 @@ export function buildTheme(brand, mode) {
     ...getMarkdownTokenColors(palette),
     ...getCssTokenColors(palette),
     ...getHtmlTokenColors(palette),
+    ...getShellTokenColors(palette),
+    ...getJsonTokenColors(palette),
+    ...getGoTokenColors(palette),
+    ...getJavaTokenColors(palette),
+    ...getCTokenColors(palette),
+    ...getPowerShellTokenColors(palette),
+    ...getMakefileTokenColors(palette),
+    ...getRustTokenColors(palette),
+    ...getYamlTokenColors(palette),
   ];
 
   return {

@@ -1,6 +1,7 @@
 const vscode = require('vscode');
 const path = require('path');
 const fs = require('fs');
+const { cleanupLegacyAurora } = require('./cleanupLegacyAurora');
 
 /** @type {vscode.StatusBarItem | undefined} */
 let themeStatusBar;
@@ -199,6 +200,7 @@ async function pickThemeByCategory() {
 function activate(context) {
   extensionPath = context.extension.extensionPath;
   catalog = loadCatalog();
+  cleanupLegacyAurora().catch(() => undefined);
 
   const showPicker = vscode.workspace
     .getConfiguration('frontierThemes')

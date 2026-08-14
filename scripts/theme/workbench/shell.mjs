@@ -71,6 +71,7 @@ export function getShellColors(p) {
     'activityBarBadge.background': primary,
     'activityBarBadge.foreground': p.onPrimary,
     'activityBar.activeBorder': primary,
+    'activityBarTop.background': bg,
     'activityBarTop.foreground': fg,
     'activityBarTop.inactiveForeground': mutedFg,
     'activityBarTop.activeBorder': primary,
@@ -155,6 +156,20 @@ export function getShellColors(p) {
     'gitDecoration.untrackedResourceForeground': mix(success, '#FFFFFF', 0.15),
     'gitDecoration.ignoredResourceForeground': mutedFg,
     'gitDecoration.conflictingResourceForeground': warning,
+
+    'scmGraph.historyItemRefColor': primary,
+    'scmGraph.historyItemRemoteRefColor': p.purple,
+    'scmGraph.historyItemBaseRefColor': warning,
+    'scmGraph.historyItemHoverDefaultLabelForeground': fg,
+    'scmGraph.historyItemHoverDefaultLabelBackground': withAlpha(primary, isDark ? 0.28 : 0.18),
+    'scmGraph.historyItemHoverLabelForeground': bg,
+    'scmGraph.historyItemHoverAdditionsForeground': success,
+    'scmGraph.historyItemHoverDeletionsForeground': error,
+    'scmGraph.foreground1': p.brackets[0],
+    'scmGraph.foreground2': p.brackets[1],
+    'scmGraph.foreground3': p.brackets[2],
+    'scmGraph.foreground4': p.brackets[3],
+    'scmGraph.foreground5': p.brackets[4],
 
   ...(isDark
       ? {

@@ -1,0 +1,28 @@
+# YAML sample — keys, strings, numbers, booleans, lists
+
+name: Frontier Themes
+version: 1.2.0
+publisher: frontier-themes
+
+features:
+  semanticTokenColors: true
+  gitlens: true
+  jupyter: true
+  errorLens: true
+  tokenRules: 130
+
+brands:
+  bigtech:
+    - id: openai
+      modes: [dark, light]
+    - id: google
+      modes: [dark, light]
+  startups:
+    - id: linear
+      modes: [dark, light]
+    - id: vercel
+      modes: [dark, light]
+
+preview:
+  workspace: examples/examples.code-workspace
+  ansi_command: npm run preview:ansi

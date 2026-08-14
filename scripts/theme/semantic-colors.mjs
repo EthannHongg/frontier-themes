@@ -35,7 +35,9 @@ export function getSemanticTokenColors(p) {
     'parameter.declaration': parameter,
     'constant.builtin': purple,
     'function.builtin': builtin,
+    'magicFunction': fn,
     'property:python': fg,
+    'variable:python': fg,
     'component': builtin,
   };
 }

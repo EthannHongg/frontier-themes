@@ -2,7 +2,7 @@ import { mix, muted, withAlpha } from '../color-utils.mjs';
 
 /** Editor internals: diagnostics, brackets, sticky scroll, ghost text, rulers. */
 export function getEditorColors(p) {
-  const { isDark, fg, bg, surface, editor, border, mutedFg, primary, error, warning, success, info, selection, selectionHi, brackets, stickyScroll, ghostText } = p;
+  const { isDark, fg, bg, surface, editor, border, mutedFg, primary, error, warning, success, info, selection, selectionHi, brackets, stickyScroll, ghostText, type, parameter } = p;
 
   return {
     'editor.background': editor,
@@ -67,6 +67,10 @@ export function getEditorColors(p) {
     'editorLink.activeForeground': primary,
     'editorGhostText.foreground': ghostText,
     'editorGhostText.background': withAlpha(editor, 0.01),
+    'editorInlayHint.foreground': mutedFg,
+    'editorInlayHint.background': withAlpha(surface, isDark ? 0.55 : 0.75),
+    'editorInlayHint.typeForeground': type,
+    'editorInlayHint.parameterForeground': parameter,
     'editorStickyScroll.background': stickyScroll,
     'editorStickyScrollHover.background': isDark ? mix(stickyScroll, '#FFFFFF', 0.06) : mix(stickyScroll, '#000000', 0.04),
     'editorStickyScroll.shadow': isDark ? '#00000044' : '#00000018',

@@ -36,9 +36,9 @@ cd frontier-themes
 npm install && npm run generate && npm run package
 ```
 
-Then: Extensions → `...` → **Install from VSIX** → select `frontier-themes-1.3.0.vsix`
+Then: Extensions → `...` → **Install from VSIX** → select `frontier-themes-1.2.0.vsix` (from [GitHub Releases](https://github.com/EthannHongg/frontier-themes/releases) or `npm run package`).
 
-Or search **Frontier Themes** on the VS Code Marketplace (after publish).
+Or search **Frontier Themes** on the VS Code Marketplace once published.
 
 ### Activate a theme
 
@@ -122,10 +122,12 @@ Themes are generated from modular sources in `scripts/theme/`:
 | `extensions/` | GitLens + Jupyter notebook keys |
 | `terminal.mjs` | Curated ANSI palette |
 
-Each generated theme includes **~320 workbench keys**, **~65+ TextMate rules**, and **semantic token colors**.
+Each generated theme includes **~367 workbench keys**, **~130 TextMate rules**, and **semantic token colors**.
 
 ```bash
 npm run generate   # regenerate themes/ from scripts/
+npm run lint:themes # validate all 48 theme JSON files
+npm run check      # generate + lint
 npm run dev        # watch brands.json and regenerate on change
 npm run package    # build .vsix
 ```
