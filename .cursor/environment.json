@@ -1,0 +1,5 @@
+{
+  "name": "frontier themes",
+  "install": "bash .cursor/scripts/install.sh",
+  "start": "bash .cursor/scripts/start.sh"
+}
