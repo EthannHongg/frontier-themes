@@ -15,10 +15,22 @@ cat >"$HOME/.config/Code/User/settings.json" <<'EOF'
 {
   "security.workspace.trust.enabled": false,
   "window.restoreWindows": "none",
+  "window.newWindowDimensions": "maximized",
   "workbench.startupEditor": "none",
   "workbench.welcome.enabled": false,
   "update.mode": "none",
-  "telemetry.telemetryLevel": "off"
+  "update.showReleaseNotes": false,
+  "telemetry.telemetryLevel": "off",
+  "extensions.ignoreRecommendations": true,
+  "extensions.autoCheckUpdates": false,
+  "extensions.autoUpdate": false,
+  "workbench.enableExperiments": false,
+  "workbench.tips.enabled": false,
+  "workbench.secondarySideBar.defaultVisibility": "hidden",
+  "workbench.editor.enablePreview": false,
+  "workbench.statusBar.visible": true,
+  "chat.disableAIFeatures": true,
+  "git.openRepositoryInParentFolders": "never"
 }
 EOF
 

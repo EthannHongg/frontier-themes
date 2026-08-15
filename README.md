@@ -21,7 +21,7 @@ Use the **status bar picker** to switch themes quickly, **preview with ↑↓** 
 ## Theme previews
 
 <p align="center">
-  <img src="media/demo/demo_01_anthropic_dark_python.png" alt="Anthropic Dark — Python syntax" width="720">
+  <img src="media/demo/demo_01_anthropic_dark_python.png" alt="Anthropic Dark — Python" width="720">
   <br><em>Anthropic Dark — Python</em>
 </p>
 
@@ -36,8 +36,33 @@ Use the **status bar picker** to switch themes quickly, **preview with ↑↓** 
 </p>
 
 <p align="center">
-  <img src="media/demo/demo_04_vercel_dark_split.png" alt="Vercel Dark — split editor" width="720">
-  <br><em>Vercel Dark — split editor</em>
+  <img src="media/demo/demo_04_vercel_dark_typescript.png" alt="Vercel Dark — TypeScript" width="720">
+  <br><em>Vercel Dark — TypeScript</em>
+</p>
+
+<p align="center">
+  <img src="media/demo/demo_05_openai_dark_typescript.png" alt="OpenAI Dark — TypeScript" width="720">
+  <br><em>OpenAI Dark — TypeScript</em>
+</p>
+
+<p align="center">
+  <img src="media/demo/demo_06_openai_light_typescript.png" alt="OpenAI Light — TypeScript" width="720">
+  <br><em>OpenAI Light — TypeScript</em>
+</p>
+
+<p align="center">
+  <img src="media/demo/demo_07_anthropic_light_python.png" alt="Anthropic Light — Python" width="720">
+  <br><em>Anthropic Light — Python</em>
+</p>
+
+<p align="center">
+  <img src="media/demo/demo_08_google_light_typescript.png" alt="Google Light — TypeScript" width="720">
+  <br><em>Google Light — TypeScript</em>
+</p>
+
+<p align="center">
+  <img src="media/demo/demo_09_linear_light_css.png" alt="Linear Light — CSS" width="720">
+  <br><em>Linear Light — CSS</em>
 </p>
 
 ## Installation
