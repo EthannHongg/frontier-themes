@@ -7,7 +7,7 @@
 </p>
 
 <p align="center">
-  <img src="media/banner.png" alt="Frontier Themes preview" width="720">
+  <img src="media/banner.png" alt="Frontier Themes — OpenAI Light, Anthropic Light, NVIDIA Dark, and Meta Light" width="720">
 </p>
 
 ## About
